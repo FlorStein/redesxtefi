@@ -147,28 +147,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // === Carrusel Galería ===
   const carouselImgs = [
-    'assets/img/_DSC9243.jpg',
-    'assets/img/_DSC9248.jpg',
-    'assets/img/_TEF0519.jpg',
-    'assets/img/_TEF0624.jpg',
-    'assets/img/_TEF0680.jpg',
-    'assets/img/_TEF0691.jpg',
-    'assets/img/_TEF0700.jpg',
-    'assets/img/_TEF0717.jpg',
-    'assets/img/_TEF0722.jpg',
-    'assets/img/_TEF0813.jpg'
+    'assets/img/DSC9243.webp',
+    'assets/img/DSC9248.webp',
+    'assets/img/TEF0519.webp',
+    'assets/img/TEF0624.webp',
+    'assets/img/TEF0680.webp',
+    'assets/img/TEF0691.webp',
+    'assets/img/TEF0700.webp',
+    'assets/img/TEF0717.webp',
+    'assets/img/TEF0722.webp',
+    'assets/img/TEF0813.webp'
   ];
   const carouselAlts = [
-    'Galería _DSC9243.jpg',
-    'Galería _DSC9248.jpg',
-    'Galería _TEF0519.jpg',
-    'Galería _TEF0624.jpg',
-    'Galería _TEF0680.jpg',
-    'Galería _TEF0691.jpg',
-    'Galería _TEF0700.jpg',
-    'Galería _TEF0717.jpg',
-    'Galería _TEF0722.jpg',
-    'Galería _TEF0813.jpg'
+    'Galería DSC9243',
+    'Galería DSC9248',
+    'Galería TEF0519',
+    'Galería TEF0624',
+    'Galería TEF0680',
+    'Galería TEF0691',
+    'Galería TEF0700',
+    'Galería TEF0717',
+    'Galería TEF0722',
+    'Galería TEF0813'
   ];
   let carouselIndex = 0;
   const imgEl = document.querySelector('.carousel__img');

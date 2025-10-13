@@ -85,6 +85,7 @@ body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Robo
   padding: 0;
 }
 
+.black  { color: var(--deep); font-style: italic; font-family: 'Times New Roman', Times, serif; font-size: 1.5rem;}
 h2, h1 { font-size: 4rem; 
 align-self: center;
 align-content: center;
@@ -92,7 +93,7 @@ text-align: center;
 padding: 0;
 margin: 10px;}
 
-.herop { font-size: 1.2rem; text-align: center; }
+.herop { font-size: 1.15rem; text-align: center; }
 
 #hero-bio {
   background-color: #e393ab;
