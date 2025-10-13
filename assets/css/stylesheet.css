@@ -1,0 +1,270 @@
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Bold.woff2') format('woff2'),
+        url('ArsenicaTrial-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Demibold.woff2') format('woff2'),
+        url('ArsenicaTrial-Demibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Regular.woff2') format('woff2'),
+        url('ArsenicaTrial-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-Bold.woff2') format('woff2'),
+        url('CodecColdTrial-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-BoldItalic.woff2') format('woff2'),
+        url('CodecCold-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-ExtraLightItalic.woff2') format('woff2'),
+        url('CodecCold-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-HeavyItalic.woff2') format('woff2'),
+        url('CodecCold-HeavyItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-ExtraBoldItalic.woff2') format('woff2'),
+        url('CodecCold-ExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-ExtraLight.woff2') format('woff2'),
+        url('CodecColdTrial-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-ExtraBold.woff2') format('woff2'),
+        url('CodecColdTrial-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-NewsItalic.woff2') format('woff2'),
+        url('CodecCold-NewsItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-Heavy.woff2') format('woff2'),
+        url('CodecColdTrial-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-LightItalic.woff2') format('woff2'),
+        url('CodecCold-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-News.woff2') format('woff2'),
+        url('CodecColdTrial-News.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-Italic.woff2') format('woff2'),
+        url('CodecCold-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-Light.woff2') format('woff2'),
+        url('CodecColdTrial-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-Thin.woff2') format('woff2'),
+        url('CodecColdTrial-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-ThinItalic.woff2') format('woff2'),
+        url('CodecCold-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-Regular.woff2') format('woff2'),
+        url('CodecColdTrial-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-Bold.woff2') format('woff2'),
+        url('CodecColdTrial-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-ExtraLight.woff2') format('woff2'),
+        url('CodecColdTrial-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-ExtraBold.woff2') format('woff2'),
+        url('CodecColdTrial-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-BoldItalic.woff2') format('woff2'),
+        url('CodecCold-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-ExtraBoldItalic.woff2') format('woff2'),
+        url('CodecCold-ExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-ExtraLightItalic.woff2') format('woff2'),
+        url('CodecCold-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-NewsItalic.woff2') format('woff2'),
+        url('CodecCold-NewsItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-HeavyItalic.woff2') format('woff2'),
+        url('CodecCold-HeavyItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold';
+    src: url('CodecCold-LightItalic.woff2') format('woff2'),
+        url('CodecCold-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-Heavy.woff2') format('woff2'),
+        url('CodecColdTrial-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Codec Cold Trial';
+    src: url('CodecColdTrial-Light.woff2') format('woff2'),
+        url('CodecColdTrial-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+

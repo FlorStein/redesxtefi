@@ -1,0 +1,117 @@
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Italic.woff2') format('woff2'),
+        url('ArsenicaTrial-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-ThinItalic.woff2') format('woff2'),
+        url('ArsenicaTrial-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-ExtraboldItalic.woff2') format('woff2'),
+        url('ArsenicaTrial-ExtraboldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-LightItalic.woff2') format('woff2'),
+        url('ArsenicaTrial-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-MediumItalic.woff2') format('woff2'),
+        url('ArsenicaTrial-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-BoldItalic.woff2') format('woff2'),
+        url('ArsenicaTrial-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Regular.woff2') format('woff2'),
+        url('ArsenicaTrial-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Light.woff2') format('woff2'),
+        url('ArsenicaTrial-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Medium.woff2') format('woff2'),
+        url('ArsenicaTrial-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Demibold.woff2') format('woff2'),
+        url('ArsenicaTrial-Demibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Thin.woff2') format('woff2'),
+        url('ArsenicaTrial-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Bold.woff2') format('woff2'),
+        url('ArsenicaTrial-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Arsenica Trial';
+    src: url('ArsenicaTrial-Extrabold.woff2') format('woff2'),
+        url('ArsenicaTrial-Extrabold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

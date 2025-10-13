@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redes x Tefi</title>
+  <meta name="description" content="Sitio de Redes X Tefi — comunicación digital, social media y diseño." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/img/logo_rxT.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/stylesheet.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="redes_x_tefi_site/assets/fonts/stylesheet.css" />
+  <meta name="theme-color" content="#52583a" />
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav__row">
+      <a class="brand" href="#h1tefa">
+        <!-- <span class="brand__logo" aria-hidden="true"></span> -->
+      </a>
+  <button class="brand__name" id="brand-name" style="background:none;border:none;color:inherit;font:inherit;cursor:pointer;padding:0;font-family: 'Arsenica trial bold', serif; font-weight: bolder; font-size: 1.5rem;">Redes x Tefi</button>
+      <ul class="nav__links">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#portfolio">Galería</a></li>
+        <li><a href="#modalidad">Modalidad de Trabajo</a></li>
+        <li><a href="#sobre">Sobre el Proyecto</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="nav__actions"><a class="btn btn--light" href="#contacto">Agendar</a></div>
+      <div class="nav__menu">
+        <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav id="mobile-nav" class="mobile" aria-label="Menú móvil">
+      <ul>
+        <li><a href="#servicios" onclick="toggleMenu()">Servicios</a></li>
+        <li><a href="#portfolio" onclick="toggleMenu()">Galería</a></li>
+        <li><a href="#modalidad" onclick="toggleMenu()">Modalidad de Trabajo</a></li>
+        <li><a href="#sobre" onclick="toggleMenu()">Sobre el Proyecto</a></li>
+        <li><a href="#faq" onclick="toggleMenu()">FAQ</a></li>
+        <li><a href="#contacto" onclick="toggleMenu()">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+<h1 class="backdropfilter" id="h1tefa">Estefanía Leonardi</h1>    
+<section class="hero" id="hero">
+  <div class="wrap hero__grid">
+    
+    <div class="hero__bio" id="hero-bio">
+      <!-- <span class="badge">Quién soy</span> -->
+      
+    <p class="herop backdropfilter">Soy comunicadora, diseñadora y emprendedora. Desde hace más de <span class="number">12</span> años acompaño a profesionales y equipos en el uso de herramientas tecnológicas y en la mejora de sus procesos comunicacionales.</p>
+      <p class="herop backdropfilter">Desarrollé mi proyecto <strong>Redes X Tefi</strong>: un servicio integral de comunicación digital para pequeñas marcas, emprendimientos y profesionales independientes.</p>
+      <p class="herop backdropfilter">Mi propósito es ayudar a humanizar las marcas, conectar con otras mujeres y disidencias, y construir desde la empatía, lo visual y lo emocional. Combino estrategia, creatividad y corazón.</p>
+      <div style="margin-top:1rem; display:flex; gap:.6rem; flex-wrap:wrap;">
+        <a class="btn" href="#contacto">Trabajemos juntas</a>
+        <a href="https://wa.me/5491173634022" target="_blank" rel="noopener" class="btn btn--whatsapp" style="display:inline-flex;align-items:center;gap:.4em;font-weight:500;">
+            <img src="assets/img/whatsapp.svg" alt="WhatsApp" style="width:24px;height:24px;vertical-align:middle;" /> WhatsApp
+        </a>
+      </div>
+    </div>
+    <figure class="hero__img-wrap">
+      <img class="hero__img" src="assets/img/tefi2.png" alt="Estefanía Leonardi" />
+    </figure>
+  </div>
+</section>
+
+
+    <section class="servicios" id="servicios">
+      <div class="wrap">
+        <h2 id="serviciosh2">Servicios</h2>
+        <div class="cards">
+          <article class="card"><h3 class="h33">Gestión de Redes</h3><p class="servicioss">Calendario, copies, diseño y reportes.</p><p class="price">Desde USD <span class="number">250</span></p></article>
+          <article class="card"><h3 class="h33">Identidad + Manual</h3><p class="servicioss">Paleta, tipografías, usos, assets exportables.</p><p class="price">Desde USD <span class="number">550</span></p></article>
+          <article class="card"><h3 class="h33">Landing Web</h3><p class="servicioss">Responsive, SEO on‑page y foco en conversión.</p><p class="price">Desde USD <span class="number">690</span></p></article>
+          <article class="card"><h3 class="h33">Packs de Piezas</h3><p class="servicioss">Stories, banners, presentaciones, ads.</p><p class="price">Pack desde USD <span class="number">180</span></p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+      <div class="wrap">
+        <h2>Galería</h2>
+        <div class="carousel">
+          <button class="carousel__prev" aria-label="Foto anterior">&#10094;</button>
+          <div class="carousel__viewport">
+            <img class="carousel__img" src="assets/img/_DSC9243.jpg" alt="Galería _DSC9243.jpg" />
+          </div>
+          <button class="carousel__next" aria-label="Foto siguiente">&#10095;</button>
+        </div>
+        <div class="carousel__pagination"></div>
+      </div>
+    </section>
+<section class=\"modalidad\" id="modalidad">
+  <div class="wrap">
+    <h2>Modalidad de trabajo</h2>
+    <div class="cards modalidad__cards">
+      <article class="card modalidad__card modalidad__card--pink">
+        <h3>ESTRATEGIA Y CONTENIDOS</h3>
+        <p>Diseño una hoja de ruta con ideas claras y personalizadas para comunicar de forma constante, auténtica y conectada.</p>
+      </article>
+      <article class="card modalidad__card modalidad__card--orange">
+        <h3>FOTOGRAFÍA Y ESTÉTICA</h3>
+        <p>Desde un brief hasta la edición final. Creo imágenes que transmiten valores, despiertan emociones y elevan la percepción de la marca.</p>
+      </article>
+      <article class="card modalidad__card modalidad__card--green">
+        <h3>ACOMPAÑAMIENTO CERCANO</h3>
+        <p>Trabajo en conjunto con cada clienta para que pueda tomar decisiones con claridad, sin sentirse sola.</p>
+      </article>
+      <article class="card modalidad__card modalidad__card--cream">
+        <h3>CURSOS ONLINE</h3>
+        <p>Cursos presenciales y online en círculos emprendedores.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+    
+<section class="sobre" id="sobre">
+  <div class="wrap glass">
+    <h2>Sobre el proyecto</h2>
+    <p class="herop"> <div id="sobretexto"><strong>“Redes por Tefi”</strong> es un servicio de imagen y comunicación digital pensado especialmente para cualquier persona que quiera superarse, diferentes emprendimientos y profesionales que desean mejorar su presencia en entornos digitales. Mi propuesta integra asesoramiento estratégico, diseño de contenido, redacción creativa y fotografía para que cada marca logre expresarse con coherencia e identidad propia.</p> </div>
+  </div>
+</section>
+
+
+    <section class="faq" id="faq">
+      <div class="wrap glass">
+        <h2>Preguntas frecuentes</h2>
+        <details open><summary>¿Cómo empezamos?</summary><p>Reunión breve para objetivos y alcance. Luego envío propuesta con entregables y fechas.</p></details>
+        <details open><summary>¿Puedo contratar por etapas?</summary><p>Sí, los servicios son modulares y se pueden priorizar por fases.</p></details>
+        <details open><summary>¿Qué entregás?</summary><p>Archivos listos para usar (PNG, SVG, PDF, Figma) y guía rápida de uso.</p></details>
+      </div>
+    </section>
+
+    <section class="contacto" id="contacto">
+      <div class="wrap glass">
+        <h2 class="contacto__title">Contacto</h2>
+  <form action="https://formspree.io/f/mnqeygqv" method="POST">
+          <input type="hidden" name="form-name" value="contacto" />
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" required placeholder="Tu nombre" />
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required placeholder="nombre@correo.com" />
+          <label for="servicio">Servicio de interés</label>
+          <select id="servicio" name="servicio">
+            <option>Gestión de Redes</option>
+            <option>Identidad + Manual</option>
+            <option>Landing Web</option>
+            <option>Packs de Piezas</option>
+          </select>
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" placeholder="Contame un poco sobre tu proyecto"></textarea>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.5rem">
+            <button class="btn btn--light" type="submit">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  
+<footer>
+    <div class="wrap foot">
+      <div>
+        <!-- <strong class="footer__title">Redes x Tefi</strong> -->
+        <p style="opacity:.85" class="footer__text">By Studio Nola Atelier © <span id="year" class="number"></span></p></div>
+      <!-- <div><a href="#servicios"  class="footer__link">Servicios</a></div>
+      <div><a href="#contacto" class="footer__link">Contacto</a></div> -->
+      <div>
+        <a href="https://wa.me/5491173634022" target="_blank" rel="noopener" class="footer__whatsapp" aria-label="WhatsApp">
+          <img src="assets/img/whatsapp.svg" alt="WhatsApp logo in a green speech bubble with a white phone icon, representing a friendly and accessible way to contact via WhatsApp" style="width:32px;height:32px;vertical-align:middle; color: black;" /> Escríbeme por <wbr>WhatsApp</wbr>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<div id="lightbox" class="lightbox" aria-modal="true" role="dialog">
+  <button class="lightbox__close" aria-label="Cerrar">×</button>
+  <div class="lightbox__pagination"><span class="number">1</span> / <span class="number">1</span></div>
+  <img class="lightbox__img" alt="Imagen ampliada" />
+  <div class="lightbox__pager" aria-live="polite"><span class="number">1</span>/<span class="number">1</span></div>
+  <button class="lightbox__prev" aria-label="Anterior">‹</button>
+  <button class="lightbox__next" aria-label="Siguiente">›</button>
+</div>
+</body>
+</html>
