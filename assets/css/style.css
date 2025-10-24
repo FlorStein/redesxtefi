@@ -1,3 +1,24 @@
+:root { --header-h: 80px; }              /* valor inicial, se sobreescribe por JS */
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+
+/* todas las secciones/anclas respetan el alto del header fijo */
+[id] { scroll-margin-top: var(--header-h); }
+
+/* evita “bleed” del fondo anterior cuando usás blur */
+section {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+}
+
+/* IMPORTANTES si usaste esto en algún lado */
+* { background-attachment: scroll !important; }   /* quita cualquier 'fixed' heredado */
+.glass {
+  background-color: rgba(255,255,255,0.75); /* o tu color */
+  backdrop-filter: blur(8px);
+}
+
+
 /* Color personalizado para la selección de texto */
 ::selection {
   background: #dded8c;
@@ -849,3 +870,5 @@ section#modalidad,
 .wrap.glass {
   padding: clamp(1rem, 2.5vw, 1.6rem);
 }
+
+

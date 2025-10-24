@@ -17,7 +17,7 @@
 </head>
 
 <body>
-  <header class="nav">
+  <header class="nav" id="site-header">
     <div class="wrap nav__row">
       <a class="brand" href="#h1tefa">
         <!-- <span class="brand__logo" aria-hidden="true"></span> -->
@@ -243,6 +243,22 @@
     <button class="lightbox__prev" aria-label="Anterior">‹</button>
     <button class="lightbox__next" aria-label="Siguiente">›</button>
   </div>
+
+  <script>
+  function setHeaderOffset() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+    const h = Math.ceil(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--header-h', h + 'px');
+  }
+  window.addEventListener('load', setHeaderOffset);
+  window.addEventListener('resize', setHeaderOffset);
+  // si la nav cambia de alto por clases activas, re-calc al hacer click
+  document.addEventListener('click', e => {
+    if (e.target.closest('a[href^="#"]') || e.target.closest('nav')) setHeaderOffset();
+  });
+</script>
+
 </body>
 
 </html>
