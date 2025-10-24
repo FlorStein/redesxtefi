@@ -172,52 +172,120 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // === Carrusel Galería ===
-  const carouselImgs = [
-    'assets/img/DSC9243.webp',
-    'assets/img/DSC9248.webp',
-    'assets/img/TEF0519.webp',
-    'assets/img/TEF0624.webp',
-    'assets/img/TEF0680.webp',
-    'assets/img/TEF0691.webp',
-    'assets/img/TEF0700.webp',
-    'assets/img/TEF0717.webp',
-    'assets/img/TEF0722.webp',
-    'assets/img/TEF0813.webp'
-  ];
-  const carouselAlts = [
-    'Galería DSC9243',
-    'Galería DSC9248',
-    'Galería TEF0519',
-    'Galería TEF0624',
-    'Galería TEF0680',
-    'Galería TEF0691',
-    'Galería TEF0700',
-    'Galería TEF0717',
-    'Galería TEF0722',
-    'Galería TEF0813'
-  ];
-  let carouselIndex = 0;
-  const imgEl = document.querySelector('.carousel__img');
-  const prevBtn = document.querySelector('.carousel__prev');
-  const nextBtn = document.querySelector('.carousel__next');
-  const pagEl = document.querySelector('.carousel__pagination');
-
-  function updateCarousel() {
-    if (!imgEl) return;
-    imgEl.src = carouselImgs[carouselIndex];
-    imgEl.alt = carouselAlts[carouselIndex];
-    if (pagEl) pagEl.textContent = (carouselIndex + 1) + ' / ' + carouselImgs.length;
+  // === Instagram Reel Gallery - Una foto a la vez con zoom ===
+  const reel = document.getElementById('instagramReel');
+  const reelImages = document.querySelectorAll('.instagram-reel img');
+  const indicatorsContainer = document.getElementById('reelIndicators');
+  const prevBtn = document.getElementById('reelPrevBtn');
+  const nextBtn = document.getElementById('reelNextBtn');
+  
+  if (reel && reelImages.length > 0 && indicatorsContainer) {
+    let currentIndex = 0;
+    
+    // Crear lightbox modal
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox-modal';
+    lightbox.innerHTML = `
+      <span class="lightbox-close">&times;</span>
+      <img src="" alt="Imagen ampliada">
+    `;
+    document.body.appendChild(lightbox);
+    
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+    
+    // Crear indicadores
+    reelImages.forEach((img, index) => {
+      const indicator = document.createElement('div');
+      indicator.className = 'reel-indicator';
+      if (index === 0) indicator.classList.add('active');
+      indicator.dataset.index = index;
+      
+      // Click en indicador para scroll a imagen
+      indicator.addEventListener('click', () => {
+        navigateToImage(index);
+      });
+      
+      indicatorsContainer.appendChild(indicator);
+    });
+    
+    // Función para navegar a una imagen específica
+    const navigateToImage = (index) => {
+      if (index < 0 || index >= reelImages.length) return;
+      currentIndex = index;
+      const targetImg = reelImages[index];
+      targetImg.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      updateActiveIndicator();
+    };
+    
+    // Actualizar indicador activo
+    const updateActiveIndicator = () => {
+      document.querySelectorAll('.reel-indicator').forEach((indicator, index) => {
+        if (index === currentIndex) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
+        }
+      });
+    };
+    
+    // Actualizar índice actual durante scroll
+    let scrollTimeout;
+    reel.addEventListener('scroll', () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const scrollLeft = reel.scrollLeft;
+        const reelWidth = reel.offsetWidth;
+        currentIndex = Math.round(scrollLeft / reelWidth);
+        updateActiveIndicator();
+      }, 100);
+    });
+    
+    // Flechas de navegación (solo desktop)
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        navigateToImage(currentIndex - 1);
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        navigateToImage(currentIndex + 1);
+      });
+    }
+    
+    // Click en imagen para abrir lightbox (zoom)
+    reelImages.forEach((img) => {
+      img.addEventListener('click', function() {
+        lightboxImg.src = this.src;
+        lightboxImg.alt = this.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Cerrar lightbox
+    const closeLightbox = () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+    
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+    
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+    
+    // Inicializar indicador activo
+    updateActiveIndicator();
   }
-  if (prevBtn) prevBtn.addEventListener('click', function() {
-    carouselIndex = (carouselIndex - 1 + carouselImgs.length) % carouselImgs.length;
-    updateCarousel();
-  });
-  if (nextBtn) nextBtn.addEventListener('click', function() {
-    carouselIndex = (carouselIndex + 1) % carouselImgs.length;
-    updateCarousel();
-  });
-  updateCarousel();
+
   // Scroll al top al hacer click en #brand-name
   var brand = document.getElementById('brand-name');
   if (brand) {

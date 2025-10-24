@@ -685,19 +685,168 @@ section#modalidad > .wrap {
   box-shadow: 0 20px 60px rgba(0,0,0,.2);
 }
 
-
-section#portfolio > .wrap {
-  position: relative;
-  z-index: 1;
-  background: rgba(255, 255, 255, 0.25);
-  -webkit-backdrop-filter: blur(18px) saturate(120%);
-  backdrop-filter: blur(18px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 20px 60px rgba(0,0,0,.2);
+/* Wrap sin background para portfolio */
+.wrap--no-bg {
+  background: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
+/* === Instagram Reel Gallery - Una foto a la vez === */
+.portfolio {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.portfolio h2 {
+  margin-bottom: 1.5rem;
+}
+
+.reel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.reel-arrow {
+  position: absolute;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reel-arrow:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+.reel-arrow svg {
+  color: #333;
+}
+
+.reel-arrow--prev {
+  left: 10px;
+}
+
+.reel-arrow--next {
+  right: 10px;
+}
+
+.instagram-reel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 0;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+.instagram-reel::-webkit-scrollbar {
+  display: none;
+}
+
+.instagram-reel img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 70vh;
+  object-fit: contain;
+  scroll-snap-align: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.instagram-reel img:hover {
+  opacity: 0.9;
+}
+
+/* Indicadores de scroll estilo Instagram */
+.reel-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+}
+
+.reel-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.reel-indicator.active {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(254, 111, 47, 0.5);
+}
+
+.reel-indicator:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(1.2);
+}
+
+/* Modal Lightbox para zoom */
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.lightbox-modal.active {
+  display: flex;
+}
+
+.lightbox-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.2);
+}
 
 section#servicios > .wrap {
   position: relative;
@@ -712,8 +861,7 @@ section#servicios > .wrap {
 }
 
 /* === Glassmorphism wrappers === */
-.servicios > .wrap,
-.portfolio > .wrap{
+.servicios > .wrap {
   position: relative;
   z-index: 1;
   background: rgba(255, 255, 255, 0.25);
@@ -729,7 +877,6 @@ section#servicios > .wrap {
 @media (max-width: 700px) {
   .hero__bio,
   .servicios > .wrap,
-  .portfolio > .wrap,
   #modalidad > .wrap {
     padding: 1.2rem 1rem;
     border-radius: 12px;
@@ -737,6 +884,32 @@ section#servicios > .wrap {
     /* -webkit-backdrop-filter: blur(10px) saturate(120%); */
     box-shadow: 0 8px 24px rgba(0,0,0,.15);
   }
+  
+  /* Instagram reel responsive - una foto a la vez */
+  .instagram-reel img {
+    height: 60vh;
+    max-height: 500px;
+  }
+  
+  .instagram-reel img.zoomed {
+    transform: scale(1.8);
+  }
+  
+  .reel-indicators {
+    margin-top: 1rem;
+    gap: 5px;
+  }
+  
+  .reel-indicator {
+    width: 5px;
+    height: 5px;
+  }
+  
+  .reel-indicator.active {
+    width: 7px;
+    height: 7px;
+  }
+  
   .modalidad__cards {
     grid-template-columns: 1fr !important;
   }
@@ -772,12 +945,24 @@ section#servicios > .wrap {
   .hero{ padding: 2rem 0; }
   .hero__bio{ padding: 1rem 1.1rem; border-radius: 14px; }
   .servicios > .wrap,
-  .portfolio > .wrap,
   section#modalidad > .wrap{ padding: 1rem; border-radius: 14px; }
   .nav__row{ gap:.5rem; }
   .brand__name{ font-size: 1rem; }
   .lightbox__prev, .lightbox__next{ font-size: 1.2rem; padding:.5rem .7rem; }
   .lightbox__pager{ bottom: 8px; }
+  
+  /* Ocultar flechas en mobile */
+  .reel-arrow {
+    display: none;
+  }
+  
+  .reel-container {
+    gap: 0;
+  }
+  
+  .instagram-reel img {
+    height: 60vh;
+  }
 }
 /* Background-attachment fixed can stutter on mobile; gracefully degrade */
 @media (max-width: 720px){

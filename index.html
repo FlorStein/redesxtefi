@@ -115,16 +115,33 @@
     </section>
 
     <section class="portfolio" id="portfolio">
-      <div class="wrap">
+      <div class="wrap wrap--no-bg">
         <h2>Galería</h2>
-        <div class="carousel">
-          <button class="carousel__prev" aria-label="Foto anterior">&#10094;</button>
-          <div class="carousel__viewport">
-            <img class="carousel__img" src="assets/img/DSC9243.webp" alt="Galería DSC9243.webp" />
+        <div class="reel-container">
+          <button class="reel-arrow reel-arrow--prev" id="reelPrevBtn" aria-label="Anterior">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="instagram-reel" id="instagramReel">
+            <img src="assets/img/DSC9243.webp" alt="Galería DSC9243" />
+            <img src="assets/img/DSC9248.webp" alt="Galería DSC9248" />
+            <img src="assets/img/TEF0519.webp" alt="Galería TEF0519" />
+            <img src="assets/img/TEF0624.webp" alt="Galería TEF0624" />
+            <img src="assets/img/TEF0680.webp" alt="Galería TEF0680" />
+            <img src="assets/img/TEF0691.webp" alt="Galería TEF0691" />
+            <img src="assets/img/TEF0700.webp" alt="Galería TEF0700" />
+            <img src="assets/img/TEF0717.webp" alt="Galería TEF0717" />
+            <img src="assets/img/TEF0722.webp" alt="Galería TEF0722" />
+            <img src="assets/img/TEF0813.webp" alt="Galería TEF0813" />
           </div>
-          <button class="carousel__next" aria-label="Foto siguiente">&#10095;</button>
+          <button class="reel-arrow reel-arrow--next" id="reelNextBtn" aria-label="Siguiente">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
-        <div class="carousel__pagination"></div>
+        <div class="reel-indicators" id="reelIndicators"></div>
       </div>
     </section>
     <section class=\"modalidad\" id="modalidad">
