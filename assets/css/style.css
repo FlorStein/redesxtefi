@@ -48,54 +48,19 @@ body, html {
 }
 
 /* === Fonts (robust naming) === */
-@font-face { 
-  font-family: "Arsenica Antiqua"; 
-  src: url("../fonts/ArsenicaTrial-Bold.woff2") format("woff2"),
-       url("../fonts/ArsenicaTrial-Bold.woff") format("woff"); 
-  font-weight: 700; 
-  font-style: normal; 
-  font-display: swap; 
-}
-@font-face { 
-  font-family: "Arsenica"; 
-  src: url("../fonts/ArsenicaTrial-Bold.woff2") format("woff2"),
-       url("../fonts/ArsenicaTrial-Bold.woff") format("woff"); 
-  font-weight: 700; 
-  font-style: normal; 
-  font-display: swap; 
-}
-@font-face { 
-  font-family: "Codec Cold Trial"; 
-  src: url("../fonts/CodecColdTrial-Regular.woff2") format("woff2"),
-       url("../fonts/CodecColdTrial-Regular.woff") format("woff"); 
-  font-weight: 400; 
-  font-style: normal; 
-  font-display: swap; 
-}
-@font-face { 
-  font-family: "Codec Cold Trial"; 
-  src: url("../fonts/CodecColdTrial-Bold.woff2") format("woff2"),
-       url("../fonts/CodecColdTrial-Bold.woff") format("woff"); 
-  font-weight: 700; 
-  font-style: normal; 
-  font-display: swap; 
-}
+@font-face { font-family: "Arsenica Antiqua"; src: url("../fonts/arsenica-antiqua.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+@font-face { font-family: "Arsenica"; src: url("../fonts/arsenica-antiqua.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
+@font-face { font-family: "Codec Cold Trial"; src: url("../fonts/codec-pro-regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family: "Codec Cold Trial"; src: url("../fonts/codec-pro-medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
 
-/* Enforce Arsenica in titles - Global */
-h1, h2, h3, h4, h5, h6, 
-.brand__name,
-#h1tefa,
-#serviciosh2,
-.contacto__title,
-.h33 { 
-  font-family: "Arsenica Antiqua", "Arsenica", serif !important;
-  font-weight: 700 !important;
-}
+/* Enforce Arsenica in titles */
+h1, h2, h3, .brand__name { font-family: "Arsenica Antiqua","Arsenica", serif; font-weight:700; font-size: 1.3rem;}
+body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;  font-weight:bold; }
 
-body { 
-  font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
-  font-weight: bold;
-}
+section { padding: 0; }
+/* Enforce ARSENICA in all titles */
+h1, h2, h3, .brand__name { font-family: "Arsenica", serif; }
+body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; }
 
 #h1tefa {
   background: url("../img/bg_sobre.svg") center / cover no-repeat fixed;
@@ -162,13 +127,7 @@ margin: 10px;}
 
 .h33 { font-size: 1.4rem; margin-bottom: .6rem; color: var(--deep); }
 
-.price { 
-  font-size: 1.2rem; 
-  font-weight: 800; 
-  color: var(--accent); 
-  margin-top: .8rem;
-  font-family: "Codec Cold Trial", sans-serif;
-}
+.price { font-size: 1.2rem; font-weight: 800; color: var(--accent); margin-top: .8rem; }
 
 #serviciosh2 { font-size: 4rem; margin-bottom: 1rem; color: var(--accent); text-align: center; }
 
@@ -246,36 +205,40 @@ html,body { margin:0; height:100%; background: color-mix(in srgb, var(--light) 8
 body, html {
   cursor: url('../img/mouse.svg'), auto;
 }
-.wrap { width:min(var(--max),92%); margin-inline:auto; }
+.wrap { width:min(var(--max),92%); margin-inline:auto; position: relative; z-index: 2; }
 
 h1,h2,h3 { font-family:"Arsenica Antiqua", serif; color: var(--light); letter-spacing: .02em; }
 a { color: var(--green); }
 
 .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.8rem 1.1rem; border-radius:999px;
-  border:2px solid var(--deep); background: var(--pink-strong); color: #000; text-decoration:none; font-weight:800; box-shadow:var(--shadow); }
+  border:2px solid var(--deep); background: var(--pink-strong); color: #000; text-decoration:none; font-weight:800; box-shadow:var(--shadow); position:relative; z-index:10; 
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s; }
+.btn:hover, .btn:focus, .btn:active { z-index:20; }
 .btn--ghost { background:transparent; color:var(--deep);}
 .btn--light { background:#dded8c; color:var(--deep); box-shadow: #122013;}
 /* Animación y hover para Agendar */
-.btn--light {
-  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-}
 .btn--light:hover {
   background: #b6e36c;
   color: #661e2a;
   box-shadow: 0 4px 20px #b6e36c80;
   transform: scale(1.05);
 }
-
-/* Números en textos con fuente Codec Cold (más legible) */
-.number {
-  font-family: "Codec Cold Trial", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.01em;
+.btn--light:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 10px #b6e36c60;
+}
+.btn--whatsapp:hover {
+  transform: scale(1.05);
+}
+.btn--whatsapp:active {
+  transform: scale(0.98);
 }
 
-.price {
-  font-family: "Codec Cold Trial", sans-serif;
-  font-weight: 800;
+/* Números en textos con fuente Arsenica */
+.number {
+  font-family: "Arsenica", serif;
+  font-weight: bold;
+  letter-spacing: 0.03em;
 }
 
 header.nav { position:sticky; top:0; z-index:60; background: #dded8c; backdrop-filter: blur(28px);
@@ -336,9 +299,16 @@ header.nav { position:sticky; top:0; z-index:60; background: #dded8c; backdrop-f
   }
 }
 
-section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
+section { padding: clamp(2.5rem, 5vw, 4rem) 0; position: relative; isolation: isolate; }
+section::before { 
+  content: ''; 
+  position: absolute; 
+  inset: 0; 
+  background: inherit; 
+  z-index: -10; 
+}
 .hero{background: url('../img/bg_hero.svg') center/cover no-repeat fixed; position:relative; overflow:clip;}
-.hero__grid { display:grid; gap:2rem; align-items:center; }
+.hero__grid { display:grid; gap:2rem; align-items:center; position: relative; }
 @media (min-width: 900px) {
   .hero__grid {
     display: flex;
@@ -499,27 +469,22 @@ h1, h2, h3, .brand__name {
 @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-.hero{background: url('../img/bg_hero.svg') center/cover no-repeat fixed; position:relative; overflow:clip;}
-
 .hero__bio{ animation: fadeUp .6s ease both; }
 .hero__img-wrap, .hero__img{ animation: fadeIn 1s ease .15s both; }
 
 /* FAQ pink background from palette */
-.faq {background: url('../img/bg_faq.svg') center/cover no-repeat fixed; position:relative; overflow:clip;}
 .faq details{ background: rgba(255,255,255,.7); border:1px solid rgba(0,0,0,.12); }
 .faq summary{ color: var(--deep); }
 
 .servicios {
   position: relative;
   background: url('../img/bg_hero.svg') center/cover no-repeat fixed;
-  z-index: 0;
 }
 
 
 .portfolio {
   position: relative;
   background: url('../img/bg_gallery.svg') center/cover no-repeat fixed;
-  z-index: 0;
     .hero__img-wrap {
       display: flex;
       align-items: flex-start;
@@ -532,7 +497,8 @@ h1, h2, h3, .brand__name {
 .modalidad {
   position: relative;
   background: url('../img/bg_modalidad.svg') center/cover no-repeat fixed;
-  z-index: 0;
+  z-index: 1;
+  isolation: isolate;
 }
 .modalidad::before {
   content: "";
@@ -789,9 +755,8 @@ section#servicios > .wrap {
 }
 @media (max-width: 720px){
   .wrap{ width:min(96%, 680px); }
-  h1{ font-size: clamp(1.8rem, 7vw, 4rem); line-height:1.15; font-family: "Arsenica Antiqua", "Arsenica", serif !important; }
-  h2{ font-size: clamp(1.3rem, 5.4vw, 2.5rem); font-family: "Arsenica Antiqua", "Arsenica", serif !important; }
-  h3{ font-family: "Arsenica Antiqua", "Arsenica", serif !important; }
+  h1{ font-size: clamp(1.8rem, 7vw, 4rem); line-height:1.15; }
+  h2{ font-size: clamp(1.3rem, 5.4vw, 2.5rem); }
   .btn{ width: 100%; justify-content:center; }
   .cards{ grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:.8rem; }
   .gallery{ grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:.6rem; }
@@ -801,7 +766,7 @@ section#servicios > .wrap {
   .portfolio > .wrap,
   section#modalidad > .wrap{ padding: 1rem; border-radius: 14px; }
   .nav__row{ gap:.5rem; }
-  .brand__name{ font-size: 1rem; font-family: "Arsenica Antiqua", "Arsenica", serif !important; }
+  .brand__name{ font-size: 1rem; }
   .lightbox__prev, .lightbox__next{ font-size: 1.2rem; padding:.5rem .7rem; }
   .lightbox__pager{ bottom: 8px; }
 }
