@@ -129,7 +129,7 @@ margin: 10px;}
 
 .price { font-size: 1.2rem; font-weight: 800; color: var(--accent); margin-top: .8rem; }
 
-#serviciosh2 { font-size: 4rem; margin-bottom: 4rem; color: var(--accent); text-align: center; }
+#serviciosh2 { font-size: 4rem; margin-bottom: 1rem; color: var(--accent); text-align: center; }
 
 .contacto__title { font-size: 4rem; margin-bottom: 2rem; color: var(--orange-strong); text-align: center; }
 
