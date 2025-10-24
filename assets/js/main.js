@@ -1,4 +1,31 @@
-function toggleMenu(){const m=document.querySelector('.mobile');const b=document.querySelector('.burger');if(!m||!b)return;const o=m.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');}
+function toggleMenu(){
+  const m=document.querySelector('.mobile');
+  const b=document.querySelector('.burger');
+  if(!m||!b)return;
+  const o=m.classList.toggle('open');
+  b.setAttribute('aria-expanded',o?'true':'false');
+  // Prevenir scroll del body cuando el menú está abierto
+  document.body.style.overflow = o ? 'hidden' : '';
+}
+
+// Cerrar menú al hacer clic en un enlace (para navegación suave)
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileLinks = document.querySelectorAll('.mobile a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      // Pequeño delay para que la navegación se complete
+      setTimeout(() => {
+        const m = document.querySelector('.mobile');
+        const b = document.querySelector('.burger');
+        if(m && m.classList.contains('open')) {
+          m.classList.remove('open');
+          b.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      }, 100);
+    });
+  });
+});
 // === Lightbox for gallery ===
 (function(){
   const lb = document.getElementById('lightbox');
