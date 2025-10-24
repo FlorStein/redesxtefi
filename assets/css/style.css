@@ -162,7 +162,13 @@ margin: 10px;}
 
 .h33 { font-size: 1.4rem; margin-bottom: .6rem; color: var(--deep); }
 
-.price { font-size: 1.2rem; font-weight: 800; color: var(--accent); margin-top: .8rem; }
+.price { 
+  font-size: 1.2rem; 
+  font-weight: 800; 
+  color: var(--accent); 
+  margin-top: .8rem;
+  font-family: "Codec Cold Trial", sans-serif;
+}
 
 #serviciosh2 { font-size: 4rem; margin-bottom: 1rem; color: var(--accent); text-align: center; }
 
@@ -260,11 +266,16 @@ a { color: var(--green); }
   transform: scale(1.05);
 }
 
-/* Números en textos con fuente Arsenica */
+/* Números en textos con fuente Codec Cold (más legible) */
 .number {
-  font-family: "Arsenica", serif;
-  font-weight: bold;
-  letter-spacing: 0.03em;
+  font-family: "Codec Cold Trial", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.price {
+  font-family: "Codec Cold Trial", sans-serif;
+  font-weight: 800;
 }
 
 header.nav { position:sticky; top:0; z-index:60; background: #dded8c; backdrop-filter: blur(28px);
