@@ -53,14 +53,21 @@ body, html {
 @font-face { font-family: "Codec Cold Trial"; src: url("../fonts/codec-pro-regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
 @font-face { font-family: "Codec Cold Trial"; src: url("../fonts/codec-pro-medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
 
-/* Enforce Arsenica in titles */
-h1, h2, h3, .brand__name { font-family: "Arsenica Antiqua","Arsenica", serif; font-weight:700; font-size: 1.3rem;}
-body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;  font-weight:bold; }
+/* Enforce Arsenica in titles - Global */
+h1, h2, h3, h4, h5, h6, 
+.brand__name,
+#h1tefa,
+#serviciosh2,
+.contacto__title,
+.h33 { 
+  font-family: "Arsenica Antiqua", "Arsenica", serif !important;
+  font-weight: 700 !important;
+}
 
-section { padding: 0; }
-/* Enforce ARSENICA in all titles */
-h1, h2, h3, .brand__name { font-family: "Arsenica", serif; }
-body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; }
+body { 
+  font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+  font-weight: bold;
+}
 
 #h1tefa {
   background: url("../img/bg_sobre.svg") center / cover no-repeat fixed;
@@ -743,8 +750,9 @@ section#servicios > .wrap {
 }
 @media (max-width: 720px){
   .wrap{ width:min(96%, 680px); }
-  h1{ font-size: clamp(1.8rem, 7vw, 4rem); line-height:1.15; }
-  h2{ font-size: clamp(1.3rem, 5.4vw, 2.5rem); }
+  h1{ font-size: clamp(1.8rem, 7vw, 4rem); line-height:1.15; font-family: "Arsenica Antiqua", "Arsenica", serif !important; }
+  h2{ font-size: clamp(1.3rem, 5.4vw, 2.5rem); font-family: "Arsenica Antiqua", "Arsenica", serif !important; }
+  h3{ font-family: "Arsenica Antiqua", "Arsenica", serif !important; }
   .btn{ width: 100%; justify-content:center; }
   .cards{ grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:.8rem; }
   .gallery{ grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:.6rem; }
@@ -754,7 +762,7 @@ section#servicios > .wrap {
   .portfolio > .wrap,
   section#modalidad > .wrap{ padding: 1rem; border-radius: 14px; }
   .nav__row{ gap:.5rem; }
-  .brand__name{ font-size: 1rem; }
+  .brand__name{ font-size: 1rem; font-family: "Arsenica Antiqua", "Arsenica", serif !important; }
   .lightbox__prev, .lightbox__next{ font-size: 1.2rem; padding:.5rem .7rem; }
   .lightbox__pager{ bottom: 8px; }
 }
