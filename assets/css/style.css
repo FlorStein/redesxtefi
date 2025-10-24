@@ -93,8 +93,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 body { 
-  font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
-  font-weight: bold;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
 }
 
 #h1tefa {
@@ -162,21 +162,15 @@ margin: 10px;}
 
 .h33 { font-size: 1.4rem; margin-bottom: .6rem; color: var(--deep); }
 
-.price { 
-  font-size: 1.2rem; 
-  font-weight: 800; 
-  color: var(--accent); 
-  margin-top: .8rem;
-  font-family: "Codec Cold Trial", sans-serif;
-}
+.price { font-size: 1.2rem; font-weight: 800; color: var(--accent); margin-top: .8rem; }
 
 #serviciosh2 { font-size: 4rem; margin-bottom: 1rem; color: var(--accent); text-align: center; }
 
 .contacto__title { font-size: 4rem; margin-bottom: 2rem; color: var(--orange-strong); text-align: center; }
 
 .footer__text { font-size: 1.2em; margin-top: .4rem; color:#927ab8; }
-.footer__title { font-size: 1.4em; color: var(--pink-strong); font-family: "Codec Cold Trial", serif; }
-.footer__link { font-size: 1.2em; color: var(--pink-strong); font-family: "Codec Cold Trial", serif;text-decoration: none;  font-weight: bold;}
+.footer__title { font-size: 1.4em; color: var(--pink-strong); }
+.footer__link { font-size: 1.2em; color: var(--pink-strong); text-decoration: none; font-weight: bold;}
 :root {
   --accent: #fe6f2f;
   --green:  #52583a;
@@ -242,7 +236,7 @@ margin: 10px;}
 }
 
 html,body { margin:0; height:100%; background: color-mix(in srgb, var(--light) 80%, white); color: var(--deep);
-  font-family:"Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; line-height:1.5; scroll-behavior:smooth; }
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height:1.5; scroll-behavior:smooth; }
 body, html {
   cursor: url('../img/mouse.svg'), auto;
 }
@@ -266,16 +260,11 @@ a { color: var(--green); }
   transform: scale(1.05);
 }
 
-/* Números en textos con fuente Codec Cold (más legible) */
+/* Números en textos con fuente Arsenica */
 .number {
-  font-family: "Codec Cold Trial", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-}
-
-.price {
-  font-family: "Codec Cold Trial", sans-serif;
-  font-weight: 800;
+  font-family:sans-serif, serif;
+  font-weight: bold;
+  letter-spacing: 0.03em;
 }
 
 header.nav { position:sticky; top:0; z-index:60; background: #dded8c; backdrop-filter: blur(28px);
