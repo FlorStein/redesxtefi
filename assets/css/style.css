@@ -48,10 +48,38 @@ body, html {
 }
 
 /* === Fonts (robust naming) === */
-@font-face { font-family: "Arsenica Antiqua"; src: url("../fonts/arsenica-antiqua.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
-@font-face { font-family: "Arsenica"; src: url("../fonts/arsenica-antiqua.woff2") format("woff2"); font-weight:700; font-style:normal; font-display:swap; }
-@font-face { font-family: "Codec Cold Trial"; src: url("../fonts/codec-pro-regular.woff2") format("woff2"); font-weight:400; font-style:normal; font-display:swap; }
-@font-face { font-family: "Codec Cold Trial"; src: url("../fonts/codec-pro-medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
+@font-face { 
+  font-family: "Arsenica Antiqua"; 
+  src: url("../fonts/ArsenicaTrial-Bold.woff2") format("woff2"),
+       url("../fonts/ArsenicaTrial-Bold.woff") format("woff"); 
+  font-weight: 700; 
+  font-style: normal; 
+  font-display: swap; 
+}
+@font-face { 
+  font-family: "Arsenica"; 
+  src: url("../fonts/ArsenicaTrial-Bold.woff2") format("woff2"),
+       url("../fonts/ArsenicaTrial-Bold.woff") format("woff"); 
+  font-weight: 700; 
+  font-style: normal; 
+  font-display: swap; 
+}
+@font-face { 
+  font-family: "Codec Cold Trial"; 
+  src: url("../fonts/CodecColdTrial-Regular.woff2") format("woff2"),
+       url("../fonts/CodecColdTrial-Regular.woff") format("woff"); 
+  font-weight: 400; 
+  font-style: normal; 
+  font-display: swap; 
+}
+@font-face { 
+  font-family: "Codec Cold Trial"; 
+  src: url("../fonts/CodecColdTrial-Bold.woff2") format("woff2"),
+       url("../fonts/CodecColdTrial-Bold.woff") format("woff"); 
+  font-weight: 700; 
+  font-style: normal; 
+  font-display: swap; 
+}
 
 /* Enforce Arsenica in titles - Global */
 h1, h2, h3, h4, h5, h6, 
