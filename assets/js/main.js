@@ -181,18 +181,66 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (reel && reelImages.length > 0 && indicatorsContainer) {
     let currentIndex = 0;
+    let lightboxIndex = 0;
     
-    // Crear lightbox modal
+    // Crear lightbox modal con navegación
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox-modal';
     lightbox.innerHTML = `
       <span class="lightbox-close">&times;</span>
+      <button class="lightbox-arrow lightbox-arrow--prev" aria-label="Anterior">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
       <img src="" alt="Imagen ampliada">
+      <button class="lightbox-arrow lightbox-arrow--next" aria-label="Siguiente">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+      <div class="lightbox-indicators"></div>
     `;
     document.body.appendChild(lightbox);
     
     const lightboxImg = lightbox.querySelector('img');
     const lightboxClose = lightbox.querySelector('.lightbox-close');
+    const lightboxPrevBtn = lightbox.querySelector('.lightbox-arrow--prev');
+    const lightboxNextBtn = lightbox.querySelector('.lightbox-arrow--next');
+    const lightboxIndicators = lightbox.querySelector('.lightbox-indicators');
+    
+    // Crear indicadores del lightbox
+    reelImages.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'lightbox-indicator';
+      if (index === 0) dot.classList.add('active');
+      lightboxIndicators.appendChild(dot);
+    });
+    
+    const lightboxDots = lightbox.querySelectorAll('.lightbox-indicator');
+    
+    // Función para actualizar la imagen en el lightbox
+    const updateLightboxImage = (index) => {
+      if (index < 0) index = reelImages.length - 1;
+      if (index >= reelImages.length) index = 0;
+      
+      lightboxIndex = index;
+      lightboxImg.src = reelImages[index].src;
+      lightboxImg.alt = reelImages[index].alt;
+      
+      // Actualizar indicadores
+      lightboxDots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+      
+      // Actualizar visibilidad de flechas
+      lightboxPrevBtn.style.opacity = reelImages.length > 1 ? '1' : '0';
+      lightboxNextBtn.style.opacity = reelImages.length > 1 ? '1' : '0';
+    };
     
     // Crear indicadores
     reelImages.forEach((img, index) => {
@@ -253,13 +301,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Click en imagen para abrir lightbox (zoom)
-    reelImages.forEach((img) => {
+    reelImages.forEach((img, index) => {
       img.addEventListener('click', function() {
-        lightboxImg.src = this.src;
-        lightboxImg.alt = this.alt;
+        lightboxIndex = index;
+        updateLightboxImage(index);
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
       });
+    });
+    
+    // Navegación en el lightbox
+    lightboxPrevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      updateLightboxImage(lightboxIndex - 1);
+    });
+    
+    lightboxNextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      updateLightboxImage(lightboxIndex + 1);
     });
     
     // Cerrar lightbox
@@ -275,12 +334,42 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Cerrar con tecla ESC
+    // Navegación con teclado
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
+      if (lightbox.classList.contains('active')) {
+        if (e.key === 'Escape') {
+          closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+          updateLightboxImage(lightboxIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          updateLightboxImage(lightboxIndex + 1);
+        }
       }
     });
+    
+    // Soporte táctil para deslizar en el lightbox
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    const handleSwipe = () => {
+      const swipeThreshold = 50;
+      if (touchStartX - touchEndX > swipeThreshold) {
+        // Deslizar a la izquierda (siguiente)
+        updateLightboxImage(lightboxIndex + 1);
+      } else if (touchEndX - touchStartX > swipeThreshold) {
+        // Deslizar a la derecha (anterior)
+        updateLightboxImage(lightboxIndex - 1);
+      }
+    };
     
     // Inicializar indicador activo
     updateActiveIndicator();
