@@ -1,0 +1,13 @@
+# robots.txt para redesportefi.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://redesportefi.com/sitemap.xml
+
+# Bloquear archivos y carpetas innecesarios
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /*.json$
+Disallow: /*.md$
