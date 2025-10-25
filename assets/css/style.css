@@ -84,13 +84,14 @@ h1, h2, h3, .brand__name { font-family: "Arsenica", serif; }
 body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; }
 
 #h1tefa {
-  background: url("../img/bg_sobre.svg") center / cover no-repeat fixed;
-  margin-top: -10px;
-  margin-bottom: -10px;
+  margin-top: 0;
+  margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
-  font-size: 6rem;
+  font-size: 5rem;
   color: #dded8c;
+  text-align: center;
+  padding-top: 0;
 }
 
 #brand-name {
@@ -99,7 +100,13 @@ body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Robo
   color: var(--deep);
 }
 
-#hero { padding: 0%;
+#hero { 
+  padding: 0;
+}
+
+.hero-extended {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .wrap.hero__grid {
@@ -107,7 +114,7 @@ body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Robo
 }
 
 .black  { color: var(--deep); font-style: italic; font-family: 'Times New Roman', Times, serif; font-size: 1.5rem;}
-h2, h1 { font-size: 4rem; 
+h2, h1 { font-size: 5rem; 
 align-self: center;
 align-content: center;
 text-align: center;
@@ -119,6 +126,24 @@ margin: 10px;}
 #hero-bio {
   background-color: #e393ab;
   border-radius: 36px;
+}
+
+.hero__content-wrapper {
+  background-color: #e393ab;
+  border-radius: 36px;
+  padding: 1.5rem;
+}
+
+.hero__content-wrapper h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.hero__content-wrapper .hero__bio {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 .nav {
@@ -150,9 +175,9 @@ margin: 10px;}
 
 .price { font-size: 1.2rem; font-weight: 800; color: var(--accent); margin-top: .8rem; }
 
-#serviciosh2 { font-size: 4rem; margin-bottom: 1rem; color: var(--accent); text-align: center; }
+#serviciosh2 { font-size: 5rem; margin-bottom: 1rem; color: var(--accent); text-align: center; }
 
-.contacto__title { font-size: 4rem; margin-bottom: 2rem; color: var(--orange-strong); text-align: center; }
+.contacto__title { font-size: 5rem; margin-bottom: 2rem; color: var(--orange-strong); text-align: center; }
 
 .footer__text { font-size: 1.2em; margin-top: .4rem; color:#927ab8; }
 .footer__title { font-size: 1.4em; color: var(--pink-strong); font-family: "Codec Cold Trial", serif; }
@@ -312,7 +337,16 @@ header.nav { position:sticky; top:0; z-index:60; background: #dded8c; backdrop-f
 }
 
 section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
-.hero{background: url('../img/bg_hero.svg') center/cover no-repeat fixed; position:relative; overflow:clip;}
+.hero{
+  background: url('../img/bg_hero.svg') center/cover no-repeat fixed; 
+  position:relative; 
+  overflow:clip;
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 1rem;
+}
 .hero__grid { display:grid; gap:2rem; align-items:center; }
 @media (min-width: 900px) {
   .hero__grid {
@@ -519,7 +553,7 @@ h1, h2, h3, .brand__name {
 .modalidad h2 {
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 4rem;
+  font-size: 5rem;
 }
 .modalidad__cards {
   display: grid;
@@ -1000,15 +1034,7 @@ section#servicios > .wrap {
 @media (max-width: 720px){
   .wrap{ width:min(96%, 680px); }
   h1{ font-size: clamp(1.8rem, 7vw, 4rem); line-height:1.15; }
-  
-  /* Mantener títulos grandes en secciones específicas */
-  .portfolio h2,
-  .sobre h2,
-  .modalidad h2,
-  .faq h2 {
-    font-size: 4rem !important;
-    line-height: 1.1 !important;
-  }
+  h2{ font-size: clamp(1.5rem, 5vw, 3rem); line-height:1.2; }
   
   .btn{ width: 100%; justify-content:center; }
   .cards{ grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:.8rem; }
