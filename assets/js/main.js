@@ -393,8 +393,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-
-  const pag = lb.querySelector('.lightbox__pagination');
-  function updatePagination() {
-    pag.textContent = (LB_INDEX + 1) + " / " + sources.length;
-  }
