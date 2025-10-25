@@ -1034,7 +1034,13 @@ section#servicios > .wrap {
 @media (max-width: 720px){
   .wrap{ width:min(96%, 680px); }
   h1{ font-size: clamp(1.8rem, 7vw, 4rem); line-height:1.15; }
-  h2{ font-size: clamp(1.5rem, 5vw, 3rem); line-height:1.2; }
+  h2{ font-size: clamp(3rem, 10vw, 4rem) !important; line-height:1.2; }
+  #serviciosh2,
+  .modalidad h2,
+  .portfolio h2,
+  .sobre h2,
+  .faq h2,
+  .contacto h2 { font-size: clamp(3rem, 10vw, 4rem) !important; }
   
   .btn{ width: 100%; justify-content:center; }
   .cards{ grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:.8rem; }
