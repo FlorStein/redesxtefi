@@ -174,12 +174,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // === Instagram Reel Gallery - Una foto a la vez con zoom ===
   const reel = document.getElementById('instagramReel');
+  const reelItems = document.querySelectorAll('.reel-item');
   const reelImages = document.querySelectorAll('.instagram-reel img');
   const indicatorsContainer = document.getElementById('reelIndicators');
   const prevBtn = document.getElementById('reelPrevBtn');
   const nextBtn = document.getElementById('reelNextBtn');
   
-  if (reel && reelImages.length > 0 && indicatorsContainer) {
+  if (reel && reelItems.length > 0 && indicatorsContainer) {
     let currentIndex = 0;
     let lightboxIndex = 0;
     
@@ -193,7 +194,10 @@ document.addEventListener('DOMContentLoaded', function() {
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </button>
-      <img src="" alt="Imagen ampliada">
+      <div class="lightbox-content">
+        <img src="" alt="Imagen ampliada">
+        <p class="lightbox-caption"></p>
+      </div>
       <button class="lightbox-arrow lightbox-arrow--next" aria-label="Siguiente">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="9 18 15 12 9 6"></polyline>
@@ -204,13 +208,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(lightbox);
     
     const lightboxImg = lightbox.querySelector('img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
     const lightboxClose = lightbox.querySelector('.lightbox-close');
     const lightboxPrevBtn = lightbox.querySelector('.lightbox-arrow--prev');
     const lightboxNextBtn = lightbox.querySelector('.lightbox-arrow--next');
     const lightboxIndicators = lightbox.querySelector('.lightbox-indicators');
     
     // Crear indicadores del lightbox
-    reelImages.forEach((_, index) => {
+    reelItems.forEach((_, index) => {
       const dot = document.createElement('div');
       dot.className = 'lightbox-indicator';
       if (index === 0) dot.classList.add('active');
@@ -221,12 +226,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Función para actualizar la imagen en el lightbox
     const updateLightboxImage = (index) => {
-      if (index < 0) index = reelImages.length - 1;
-      if (index >= reelImages.length) index = 0;
+      if (index < 0) index = reelItems.length - 1;
+      if (index >= reelItems.length) index = 0;
       
       lightboxIndex = index;
-      lightboxImg.src = reelImages[index].src;
-      lightboxImg.alt = reelImages[index].alt;
+      
+      // Obtener la imagen y su caption del mismo reel-item
+      const currentItem = reelItems[index];
+      const currentImg = currentItem.querySelector('img');
+      const currentCaption = currentItem.querySelector('.reel-caption');
+      
+      if (currentImg) {
+        lightboxImg.src = currentImg.src;
+        lightboxImg.alt = currentImg.alt;
+      }
+      
+      // Actualizar el texto descriptivo
+      if (currentCaption) {
+        lightboxCaption.textContent = currentCaption.textContent;
+      }
       
       // Actualizar indicadores
       lightboxDots.forEach((dot, i) => {
@@ -238,12 +256,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       
       // Actualizar visibilidad de flechas
-      lightboxPrevBtn.style.opacity = reelImages.length > 1 ? '1' : '0';
-      lightboxNextBtn.style.opacity = reelImages.length > 1 ? '1' : '0';
+      lightboxPrevBtn.style.opacity = reelItems.length > 1 ? '1' : '0';
+      lightboxNextBtn.style.opacity = reelItems.length > 1 ? '1' : '0';
     };
     
     // Crear indicadores
-    reelImages.forEach((img, index) => {
+    reelItems.forEach((item, index) => {
       const indicator = document.createElement('div');
       indicator.className = 'reel-indicator';
       if (index === 0) indicator.classList.add('active');
@@ -259,10 +277,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Función para navegar a una imagen específica
     const navigateToImage = (index) => {
-      if (index < 0 || index >= reelImages.length) return;
+      if (index < 0 || index >= reelItems.length) return;
       currentIndex = index;
-      const targetImg = reelImages[index];
-      targetImg.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const targetItem = reelItems[index];
+      targetItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       updateActiveIndicator();
     };
     
