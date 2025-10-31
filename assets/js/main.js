@@ -72,10 +72,10 @@
     isPageLoaded = true;
   });
   
-  // Timeout de seguridad: forzar completar después de 8 segundos
+  // Timeout de seguridad: forzar completar después de 5 segundos
   setTimeout(() => {
     hideLoader();
-  }, 8000);
+  }, 5000);
 })();
 
 function toggleMenu(){
