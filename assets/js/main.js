@@ -1,31 +1,37 @@
 // === PAGE LOADER ===
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
   const loader = document.getElementById('pageLoader');
   const percentElement = document.getElementById('loaderPercent');
   const progressBar = document.getElementById('loaderProgress');
+  
+  // Validar que existen los elementos
+  if (!loader || !percentElement || !progressBar) {
+    console.error('Loader elements not found');
+    return;
+  }
   
   let progress = 0;
   let isPageLoaded = false;
   
   // Incremento más lento para duración más larga
-  const interval = 80; // Actualizar cada 80ms (antes 50ms)
+  const interval = 80;
   
   // Animar el contador con velocidad variable
   const counter = setInterval(() => {
     // Ralentizar el progreso a medida que se acerca al 100%
     let increment;
     if (progress < 40) {
-      increment = 1.5; // Más lento al inicio
+      increment = 1.5;
     } else if (progress < 70) {
-      increment = 0.8; // Medio-lento
+      increment = 0.8;
     } else if (progress < 90) {
-      increment = 0.4; // Lento
+      increment = 0.4;
     } else if (progress < 95) {
-      increment = 0.2; // Muy lento cerca del final
+      increment = 0.2;
     } else if (isPageLoaded) {
-      increment = 2; // Rápido al completar si la página ya cargó
+      increment = 2;
     } else {
-      increment = 0.1; // Extremadamente lento si esperamos carga
+      increment = 0.1;
     }
     
     progress += increment;
@@ -63,7 +69,15 @@ document.addEventListener('DOMContentLoaded', function() {
       progress = Math.max(progress, 90);
     }
   });
-});
+  
+  // Timeout de seguridad: forzar completar después de 10 segundos
+  setTimeout(() => {
+    if (progress < 100) {
+      isPageLoaded = true;
+      progress = 95;
+    }
+  }, 10000);
+})();
 
 function toggleMenu(){
   const m=document.querySelector('.mobile');
