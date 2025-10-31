@@ -375,7 +375,17 @@ section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
 .portfolio { background: color-mix(in srgb, var(--stone) 40%, white); background-attachment: fixed; }
 .sobre { background: color-mix(in srgb, var(--accent) 8%, white); background-attachment: fixed; }
 .faq{ background: url('../img/bg_faq.svg') center/cover no-repeat fixed; position:relative; overflow:clip;}
-.contacto {background: url('../img/bg_contacto.svg') center/cover no-repeat fixed; position:relative; overflow:clip;}
+.contacto {
+  background: url('../img/bg_contacto.svg') center/cover no-repeat fixed; 
+  position:relative; 
+  overflow:clip;
+  scroll-margin-top: calc(var(--header-h) - 3rem);
+}
+
+.contacto h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
 
 .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem; }
 .card { background:#fff; border:1px solid rgba(0,0,0,.12); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow); }
@@ -385,8 +395,8 @@ section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
 .faq details{background:rgba(255,255,255,.95);border:1px solid rgba(0,0,0,.15);border-radius:12px;padding:.9rem 1rem;}
 details+details { margin-top:.8rem; } summary { cursor:pointer; font-weight:800; }
 
-form { display:grid; gap:.75rem; }
-input,select,textarea { padding:.85rem .9rem; border:1px solid rgba(0,0,0,.18); border-radius:12px; background: color-mix(in srgb, var(--stone) 70%, white); }
+form { display:grid; gap:.6rem; }
+input,select,textarea { padding:.75rem .85rem; border:1px solid rgba(0,0,0,.18); border-radius:12px; background: color-mix(in srgb, var(--stone) 70%, white); }
 input:focus,select:focus,textarea:focus { border-color: var(--green); background: #fff; outline: none; }
 
 footer { background: #dded8c; color:#ff59ec; padding:2rem 0; }
@@ -399,6 +409,22 @@ footer { background: #dded8c; color:#ff59ec; padding:2rem 0; }
 }
 
 .footer__social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer__social-title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--deep);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer__social-icons {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -1178,6 +1204,32 @@ section#servicios > .wrap {
   .lightbox-arrow--next {
     right: 15px;
   }
+  
+  /* Footer responsive en mobile */
+  footer {
+    padding: 1.5rem 0;
+  }
+  
+  .foot {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .footer__social {
+    order: 1;
+  }
+  
+  .footer__whatsapp {
+    order: 2;
+    font-size: 0.95rem;
+  }
+  
+  .footer__text {
+    order: 3;
+    font-size: 0.85rem;
+  }
 }
 /* Background-attachment fixed can stutter on mobile; gracefully degrade */
 @media (max-width: 720px){
@@ -1226,11 +1278,17 @@ section{ scroll-margin-top: var(--header-h); }
 .portfolio,
 section#modalidad,
 .sobre,
-.faq,
-.contacto{
+.faq{
   min-height: 100svh; /* small viewport unit for mobile toolbars */
   min-height: 100vh;
   display: block;
+}
+
+.contacto {
+  min-height: 50vh;
+  display: block;
+  padding-top: 2rem !important;
+  padding-bottom: 1rem !important;
 }
 
 /* Hero keeps its internal grid; ensure it vertically breathes on tall screens */
@@ -1244,9 +1302,14 @@ section#modalidad,
   .portfolio,
   section#modalidad,
   .sobre,
-  .faq,
-  .contacto{
+  .faq{
     min-height: 100svh;
+  }
+  
+  .contacto {
+    min-height: 40vh;
+    padding-top: 1rem !important;
+    padding-bottom: 0.5rem !important;
   }
 }
 
