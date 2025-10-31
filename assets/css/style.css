@@ -398,6 +398,36 @@ footer { background: #dded8c; color:#ff59ec; padding:2rem 0; }
   gap: 1rem;
 }
 
+.footer__social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  color: var(--deep);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.footer__social-link:hover {
+  background: var(--deep);
+  color: #dded8c;
+  transform: scale(1.1);
+}
+
+.footer__social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
 .footer__whatsapp {
   display: inline-flex;
   align-items: center;
