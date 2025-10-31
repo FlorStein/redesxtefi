@@ -1,0 +1,125 @@
+/* === PAGE LOADER === */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../img/flower-pattern.webp') center/cover no-repeat;
+  background-color: #dded8c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loader-logo {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.loader-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.loader-counter {
+  font-family: "Arsenica Antiqua", serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: #651E2A;
+  line-height: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loader-bar {
+  width: 300px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loader-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #651E2A, #661e2a);
+  border-radius: 10px;
+  width: 0%;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px rgba(102, 30, 42, 0.5);
+}
+
+.loader-text {
+  font-family: "Codec Cold Trial", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #651E2A;
+  margin: 0;
+  opacity: 0.95;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 720px) {
+  .loader-logo {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .loader-logo img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .loader-counter {
+    font-size: 3rem;
+  }
+  
+  .loader-bar {
+    width: 250px;
+  }
+  
+  .loader-text {
+    font-size: 1.15rem;
+  }
+}

@@ -1,3 +1,70 @@
+// === PAGE LOADER ===
+document.addEventListener('DOMContentLoaded', function() {
+  const loader = document.getElementById('pageLoader');
+  const percentElement = document.getElementById('loaderPercent');
+  const progressBar = document.getElementById('loaderProgress');
+  
+  let progress = 0;
+  let isPageLoaded = false;
+  
+  // Incremento más lento para duración más larga
+  const interval = 80; // Actualizar cada 80ms (antes 50ms)
+  
+  // Animar el contador con velocidad variable
+  const counter = setInterval(() => {
+    // Ralentizar el progreso a medida que se acerca al 100%
+    let increment;
+    if (progress < 40) {
+      increment = 1.5; // Más lento al inicio
+    } else if (progress < 70) {
+      increment = 0.8; // Medio-lento
+    } else if (progress < 90) {
+      increment = 0.4; // Lento
+    } else if (progress < 95) {
+      increment = 0.2; // Muy lento cerca del final
+    } else if (isPageLoaded) {
+      increment = 2; // Rápido al completar si la página ya cargó
+    } else {
+      increment = 0.1; // Extremadamente lento si esperamos carga
+    }
+    
+    progress += increment;
+    
+    // Si llegamos al 95% y la página no ha cargado, esperar
+    if (progress >= 95 && !isPageLoaded) {
+      progress = 95;
+    }
+    
+    // Si llegamos a 100% o la página cargó y estamos cerca
+    if (progress >= 100 || (isPageLoaded && progress >= 95)) {
+      progress = 100;
+      clearInterval(counter);
+      
+      // Esperar un momento y luego ocultar el loader
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+        // Remover del DOM después de la animación
+        setTimeout(() => {
+          loader.style.display = 'none';
+        }, 500);
+      }, 300);
+    }
+    
+    // Actualizar el porcentaje y la barra
+    percentElement.textContent = Math.floor(progress);
+    progressBar.style.width = progress + '%';
+  }, interval);
+  
+  // Cuando la página termine de cargar
+  window.addEventListener('load', () => {
+    isPageLoaded = true;
+    // Si estamos en menos de 95%, acelerar hasta 95%
+    if (progress < 95) {
+      progress = Math.max(progress, 90);
+    }
+  });
+});
+
 function toggleMenu(){
   const m=document.querySelector('.mobile');
   const b=document.querySelector('.burger');

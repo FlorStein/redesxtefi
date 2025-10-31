@@ -10,12 +10,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/img/logo_rxT.png">
+  <link rel="stylesheet" href="assets/css/loader.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <meta name="theme-color" content="#52583a" />
 </head>
 
 <body>
+  <!-- Loader / Contador -->
+  <div id="pageLoader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="assets/img/logorxt.png" alt="Redes x Tefi Logo">
+      </div>
+      <div class="loader-counter">
+        <span id="loaderPercent">0</span>%
+      </div>
+      <div class="loader-bar">
+        <div id="loaderProgress" class="loader-progress"></div>
+      </div>
+      <p class="loader-text">Cargando experiencia...</p>
+    </div>
+  </div>
+
   <header class="nav" id="site-header">
     <div class="wrap nav__row">
       <a class="brand" href="#h1tefa">
