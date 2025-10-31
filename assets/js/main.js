@@ -12,12 +12,28 @@
   
   let progress = 0;
   let isPageLoaded = false;
+  let counter;
+  
+  // Función para ocultar el loader
+  function hideLoader() {
+    clearInterval(counter);
+    progress = 100;
+    percentElement.textContent = '100';
+    progressBar.style.width = '100%';
+    
+    setTimeout(() => {
+      loader.classList.add('fade-out');
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 500);
+    }, 300);
+  }
   
   // Incremento más lento para duración más larga
   const interval = 80;
   
   // Animar el contador con velocidad variable
-  const counter = setInterval(() => {
+  counter = setInterval(() => {
     // Ralentizar el progreso a medida que se acerca al 100%
     let increment;
     if (progress < 40) {
@@ -27,33 +43,23 @@
     } else if (progress < 90) {
       increment = 0.4;
     } else if (progress < 95) {
-      increment = 0.2;
-    } else if (isPageLoaded) {
-      increment = 2;
+      increment = 0.3;
     } else {
-      increment = 0.1;
+      increment = 0.5; // Continuar progresando
     }
     
     progress += increment;
     
-    // Si llegamos al 95% y la página no ha cargado, esperar
-    if (progress >= 95 && !isPageLoaded) {
-      progress = 95;
+    // Completar cuando la página carga y estamos cerca del final
+    if (isPageLoaded && progress >= 90) {
+      hideLoader();
+      return;
     }
     
-    // Si llegamos a 100% o la página cargó y estamos cerca
-    if (progress >= 100 || (isPageLoaded && progress >= 95)) {
-      progress = 100;
-      clearInterval(counter);
-      
-      // Esperar un momento y luego ocultar el loader
-      setTimeout(() => {
-        loader.classList.add('fade-out');
-        // Remover del DOM después de la animación
-        setTimeout(() => {
-          loader.style.display = 'none';
-        }, 500);
-      }, 300);
+    // Forzar completar al llegar a 100
+    if (progress >= 100) {
+      hideLoader();
+      return;
     }
     
     // Actualizar el porcentaje y la barra
@@ -64,19 +70,12 @@
   // Cuando la página termine de cargar
   window.addEventListener('load', () => {
     isPageLoaded = true;
-    // Si estamos en menos de 95%, acelerar hasta 95%
-    if (progress < 95) {
-      progress = Math.max(progress, 90);
-    }
   });
   
-  // Timeout de seguridad: forzar completar después de 10 segundos
+  // Timeout de seguridad: forzar completar después de 8 segundos
   setTimeout(() => {
-    if (progress < 100) {
-      isPageLoaded = true;
-      progress = 95;
-    }
-  }, 10000);
+    hideLoader();
+  }, 8000);
 })();
 
 function toggleMenu(){
