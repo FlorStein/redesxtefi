@@ -454,6 +454,33 @@ footer { background: #dded8c; color:#ff59ec; padding:2rem 0; }
   height: 20px;
 }
 
+.footer__studio-link {
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.footer__studio-link .footer__text {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.footer__studio-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, #ff00ee, #927ab8);
+  transition: width 0.4s ease;
+}
+.footer__studio-link:hover .footer__text {
+  color: #ff00ee;
+}
+.footer__studio-link:hover::after {
+  width: 100%;
+}
+
 .footer__whatsapp {
   display: inline-flex;
   align-items: center;
