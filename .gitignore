@@ -2,9 +2,6 @@
 .env
 .env.local
 
-# Notion config (contains sensitive tokens)
-assets/js/notion-config.js
-
 # Dependencies
 node_modules/
 
