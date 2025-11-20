@@ -1,0 +1,14 @@
+{
+  "name": "redesxtefi",
+  "version": "1.0.0",
+  "description": "Redes x Tefi website with Notion blog integration",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.10.1"
+  }
+}

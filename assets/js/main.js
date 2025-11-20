@@ -6,9 +6,17 @@
   
   // Validar que existen los elementos
   if (!loader || !percentElement || !progressBar) {
-    console.error('Loader elements not found');
     return;
   }
+  
+  // Verificar si el loader ya se mostró en esta sesión
+  if (sessionStorage.getItem('loaderShown')) {
+    loader.style.display = 'none';
+    return;
+  }
+  
+  // Marcar que el loader se está mostrando
+  sessionStorage.setItem('loaderShown', 'true');
   
   let progress = 0;
   let isPageLoaded = false;

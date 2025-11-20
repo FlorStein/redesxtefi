@@ -1,0 +1,16 @@
+# Environment variables
+.env
+.env.local
+
+# Notion config (contains sensitive tokens)
+assets/js/notion-config.js
+
+# Dependencies
+node_modules/
+
+# Netlify
+.netlify/
+
+# OS
+.DS_Store
+Thumbs.db
