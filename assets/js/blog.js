@@ -81,10 +81,22 @@
   async function loadPosts() {
     showLoader();
 
+    // Verificar configuración
+    if (!NOTION_TOKEN || !DATABASE_ID) {
+      console.error('Configuración de Notion no encontrada');
+      showError('Configuración de Notion no encontrada. Verifica notion-config.js');
+      return;
+    }
+
+    console.log('Token presente:', !!NOTION_TOKEN);
+    console.log('Database ID:', DATABASE_ID);
+
     try {
       // Usar un proxy CORS para hacer la petición a Notion
       const proxyUrl = 'https://corsproxy.io/?';
       const notionUrl = `https://api.notion.com/v1/databases/${DATABASE_ID}/query`;
+      
+      console.log('Haciendo petición a:', notionUrl);
 
       const response = await fetch(proxyUrl + encodeURIComponent(notionUrl), {
         method: 'POST',
@@ -109,11 +121,18 @@
         })
       });
       
+      console.log('Response status:', response.status);
+      
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Error response:', errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
       const data = await response.json();
+      console.log('Respuesta de Notion:', data);
+      console.log('Cantidad de resultados:', data.results?.length || 0);
+      
       const posts = data.results.map(page => {
         const props = page.properties;
         return {
@@ -128,6 +147,8 @@
           url: `blog-post.html?id=${page.id}`
         };
       });
+
+      console.log('Posts procesados:', posts);
 
       if (!posts || posts.length === 0) {
         showError('No hay posts publicados aún');
@@ -148,8 +169,11 @@
       }
 
     } catch (error) {
-      console.error('Error al cargar posts:', error);
-      showError('Error al conectar con Notion. Por favor intenta más tarde.');
+      console.error('Error completo:', error);
+      console.error('Tipo de error:', error.name);
+      console.error('Mensaje:', error.message);
+      console.error('Stack:', error.stack);
+      showError(`⚠️ Error: ${error.message}`);
     }
   }
 

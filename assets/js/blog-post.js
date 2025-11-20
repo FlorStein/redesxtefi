@@ -2,6 +2,8 @@
 (function() {
   const NOTION_TOKEN = window.NOTION_CONFIG?.token || '';
   
+  console.log('Blog Post - Token presente:', !!NOTION_TOKEN);
+  
   const loader = document.getElementById('postLoader');
   const content = document.getElementById('postContent');
   const error = document.getElementById('postError');
@@ -10,7 +12,10 @@
   const urlParams = new URLSearchParams(window.location.search);
   const postId = urlParams.get('id');
 
+  console.log('Post ID:', postId);
+
   if (!postId) {
+    console.error('No se encontró ID de post en la URL');
     showError();
     return;
   }
