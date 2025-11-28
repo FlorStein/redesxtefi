@@ -413,7 +413,7 @@ section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
   margin-bottom: 1rem;
 }
 
-.cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.5rem; }
+.cards { display:grid; grid-template-columns:repeat(2, 1fr); gap:1.5rem; }
 .card { 
   background:#fff; 
   border:1px solid rgba(0,0,0,.12); 
@@ -435,44 +435,10 @@ section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
 }
 
 .card__header {
-  position: relative;
   padding-bottom: 1rem;
 }
 
-.card__toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  color: var(--purple);
-  transition: transform 0.3s ease;
-}
-
-.card__toggle svg {
-  transition: transform 0.3s ease;
-}
-
-.card__toggle:hover {
-  color: var(--green);
-}
-
-/* Por defecto las flechas apuntan arriba (porque están abiertas) */
-.card--expandable.is-open .card__toggle svg {
-  transform: rotate(180deg);
-}
-
 .card__content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
-  opacity: 0;
-}
-
-.card--expandable.is-open .card__content {
-  max-height: 2000px;
   opacity: 1;
   margin-top: 1rem;
 }
@@ -1330,17 +1296,12 @@ section#servicios > .wrap {
   .contacto h2 { font-size: clamp(3rem, 10vw, 4rem) !important; }
   
   .btn{ width: 100%; justify-content:center; }
-  .cards{ grid-template-columns: 1fr; gap:1rem; }
+  .cards{ grid-template-columns: 1fr !important; gap:1rem; }
   .gallery{ grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:.6rem; }
   
-  /* Ajustes para tarjetas expandibles en móvil */
+  /* Ajustes para tarjetas en móvil */
   .card {
     padding: 1rem;
-  }
-  
-  .card__toggle {
-    top: -5px;
-    right: -5px;
   }
   
   .card__section h4 {
