@@ -82,6 +82,32 @@ section { padding: 0; }
 h1, h2, h3, .brand__name { font-family: "Arsenica", serif; }
 body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; }
 
+/* Números con tipografía sans-serif cuando el texto usa Codec */
+body {
+  font-feature-settings: "tnum" 1;
+}
+
+/* Aplicar tipografía diferente a números en elementos específicos */
+p, 
+.card, 
+.servicioss, 
+.card__deliverables,
+.card__section,
+.price,
+h3,
+.h33,
+li,
+.card__content,
+span {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Forzar números a usar sans-serif */
+.number {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  font-weight: 700;
+}
+
 #h1tefa {
   margin-top: 0;
   margin-bottom: 0;
@@ -387,8 +413,126 @@ section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
   margin-bottom: 1rem;
 }
 
-.cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem; }
-.card { background:#fff; border:1px solid rgba(0,0,0,.12); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow); }
+.cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.5rem; }
+.card { 
+  background:#fff; 
+  border:1px solid rgba(0,0,0,.12); 
+  border-radius:var(--radius); 
+  padding:1.5rem; 
+  box-shadow:var(--shadow); 
+  transition: all 0.3s ease;
+  position: relative;
+}
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+}
+
+/* Tarjetas expandibles */
+.card--expandable {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__header {
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.card__toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--purple);
+  transition: transform 0.3s ease;
+}
+
+.card__toggle:hover {
+  color: var(--green);
+}
+
+.card--expandable.is-open .card__toggle svg {
+  transform: rotate(180deg);
+}
+
+.card__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+  opacity: 0;
+}
+
+.card--expandable.is-open .card__content {
+  max-height: 2000px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+.card__section {
+  margin-bottom: 1.5rem;
+}
+
+.card__section h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card__section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card__section ul li {
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--deep);
+}
+
+.card__section ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.card__deliverables {
+  font-size: 0.95rem;
+  color: var(--deep);
+  line-height: 1.6;
+}
+
+.card--featured {
+  border: 2px solid var(--purple);
+  background: linear-gradient(135deg, rgba(255, 0, 238, 0.03) 0%, rgba(146, 122, 184, 0.05) 100%);
+}
+
+.card__badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: var(--purple);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
 .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem; }
 .gallery img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; border:1px solid rgba(0,0,0,.12); box-shadow:var(--shadow); }
 
@@ -1181,8 +1325,33 @@ section#servicios > .wrap {
   .contacto h2 { font-size: clamp(3rem, 10vw, 4rem) !important; }
   
   .btn{ width: 100%; justify-content:center; }
-  .cards{ grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:.8rem; }
+  .cards{ grid-template-columns: 1fr; gap:1rem; }
   .gallery{ grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap:.6rem; }
+  
+  /* Ajustes para tarjetas expandibles en móvil */
+  .card {
+    padding: 1rem;
+  }
+  
+  .card__toggle {
+    top: -5px;
+    right: -5px;
+  }
+  
+  .card__section h4 {
+    font-size: 0.9rem;
+  }
+  
+  .card__section ul li {
+    font-size: 0.9rem;
+  }
+  
+  .card__badge {
+    top: -10px;
+    right: 10px;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
   .hero{ padding: 2rem 0; }
   .hero__bio{ padding: 1rem 1.1rem; border-radius: 14px; }
   .servicios > .wrap,

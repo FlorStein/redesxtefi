@@ -36,31 +36,34 @@
   function blockToHTML(block) {
     const type = block.type;
     const content = block[type];
+    
+    console.log('Procesando bloque:', { type, content });
 
     switch (type) {
       case 'paragraph':
-        const pText = content.rich_text.map(t => t.plain_text).join('');
+        const pText = content?.rich_text?.map(t => t.plain_text).join('') || '';
+        console.log('Párrafo:', pText);
         return pText ? `<p>${pText}</p>` : '';
       
       case 'heading_1':
-        const h1Text = content.rich_text.map(t => t.plain_text).join('');
-        return `<h2>${h1Text}</h2>`;
+        const h1Text = content?.rich_text?.map(t => t.plain_text).join('') || '';
+        return h1Text ? `<h2>${h1Text}</h2>` : '';
       
       case 'heading_2':
-        const h2Text = content.rich_text.map(t => t.plain_text).join('');
-        return `<h3>${h2Text}</h3>`;
+        const h2Text = content?.rich_text?.map(t => t.plain_text).join('') || '';
+        return h2Text ? `<h3>${h2Text}</h3>` : '';
       
       case 'heading_3':
-        const h3Text = content.rich_text.map(t => t.plain_text).join('');
-        return `<h4>${h3Text}</h4>`;
+        const h3Text = content?.rich_text?.map(t => t.plain_text).join('') || '';
+        return h3Text ? `<h4>${h3Text}</h4>` : '';
       
       case 'bulleted_list_item':
-        const liText = content.rich_text.map(t => t.plain_text).join('');
-        return `<li>${liText}</li>`;
+        const liText = content?.rich_text?.map(t => t.plain_text).join('') || '';
+        return liText ? `<li>${liText}</li>` : '';
       
       case 'numbered_list_item':
-        const numText = content.rich_text.map(t => t.plain_text).join('');
-        return `<li>${numText}</li>`;
+        const numText = content?.rich_text?.map(t => t.plain_text).join('') || '';
+        return numText ? `<li>${numText}</li>` : '';
       
       case 'quote':
         const quoteText = content.rich_text.map(t => t.plain_text).join('');
@@ -118,7 +121,17 @@
       const contenidoTexto = props.Contenido?.rich_text?.map(t => t.plain_text).join('') || '';
       const imagen = props.Imagen?.files[0]?.file?.url || props.Imagen?.files[0]?.external?.url || '';
       
-      console.log('Contenido texto encontrado:', contenidoTexto ? 'Sí' : 'No');
+      console.log('Datos del post:', {
+        titulo,
+        categoria,
+        fecha,
+        lectura,
+        'tiene excerpt': !!excerpt,
+        'largo excerpt': excerpt?.length || 0,
+        'tiene contenido': !!contenidoTexto,
+        'largo contenido': contenidoTexto?.length || 0,
+        'tiene imagen': !!imagen
+      });
 
       // 2. Obtener contenido (bloques)
       let blocks = [];
@@ -155,8 +168,14 @@
       // Convertir bloques a HTML
       let html = '';
       
+      console.log('Decisión de contenido:', {
+        'bloques disponibles': blocks.length,
+        'tiene contenidoTexto': !!contenidoTexto,
+        'tiene excerpt': !!excerpt
+      });
+      
       if (blocks.length > 0) {
-        console.log('Procesando', blocks.length, 'bloques');
+        console.log('✅ Usando bloques de Notion -', blocks.length, 'bloques');
         let inList = false;
         let listType = '';
 
@@ -191,12 +210,22 @@
         if (inList) {
           html += listType === 'ul' ? '</ul>' : '</ol>';
         }
-      } else if (contenidoTexto) {
+        
+        // Si los bloques no generaron contenido, intentar con la propiedad Contenido
+        if (!html.trim() && contenidoTexto) {
+          console.log('⚠️ Los bloques estaban vacíos, usando propiedad Contenido');
+          blocks = []; // Forzar el siguiente if
+        }
+      }
+      
+      if (blocks.length === 0 && contenidoTexto) {
         // Si hay contenido en la propiedad Contenido, convertirlo a HTML
-        console.log('Usando contenido de la propiedad Contenido');
+        console.log('✅ Usando contenido de la propiedad Contenido');
+        console.log('Contenido completo:', contenidoTexto);
         
         // Procesar línea por línea respetando todos los saltos
         const lineas = contenidoTexto.split('\n');
+        console.log('Total de líneas:', lineas.length);
         let htmlTemp = '';
         let enLista = false;
         
@@ -259,11 +288,14 @@
         html = htmlTemp;
       } else if (excerpt) {
         // Si no hay bloques ni contenido, mostrar el excerpt
+        console.log('⚠️ Solo mostrando excerpt');
         html = `<p>${excerpt}</p><p><em>Contenido completo próximamente...</em></p>`;
       } else {
+        console.log('❌ No hay contenido disponible');
         html = `<p><em>Este artículo está en desarrollo. Vuelve pronto para ver el contenido completo.</em></p>`;
       }
 
+      console.log('HTML generado:', html.substring(0, 200) + '...');
       document.getElementById('postBody').innerHTML = html;
 
       // Mostrar contenido

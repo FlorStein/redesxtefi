@@ -498,4 +498,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
   }
+
+  // === TARJETAS DE SERVICIOS EXPANDIBLES ===
+  const expandableCards = document.querySelectorAll('.card--expandable');
+  
+  expandableCards.forEach(card => {
+    const toggle = card.querySelector('.card__toggle');
+    const content = card.querySelector('.card__content');
+    
+    if (toggle && content) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Toggle la clase is-open
+        card.classList.toggle('is-open');
+        
+        // Animar el scroll suave hacia la tarjeta si se está abriendo
+        if (card.classList.contains('is-open')) {
+          setTimeout(() => {
+            const cardTop = card.getBoundingClientRect().top + window.pageYOffset;
+            const offset = 100; // espacio desde el top
+            window.scrollTo({
+              top: cardTop - offset,
+              behavior: 'smooth'
+            });
+          }, 100);
+        }
+      });
+    }
+  });
 });
