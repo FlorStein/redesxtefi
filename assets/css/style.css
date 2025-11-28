@@ -451,10 +451,15 @@ section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
   transition: transform 0.3s ease;
 }
 
+.card__toggle svg {
+  transition: transform 0.3s ease;
+}
+
 .card__toggle:hover {
   color: var(--green);
 }
 
+/* Por defecto las flechas apuntan arriba (porque están abiertas) */
 .card--expandable.is-open .card__toggle svg {
   transform: rotate(180deg);
 }
