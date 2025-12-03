@@ -288,6 +288,105 @@
   font-weight: 600;
 }
 
+/* ==================== COMPARTIR ==================== */
+
+.blog-share {
+  margin-top: 3rem;
+}
+
+.blog-share h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #121212;
+}
+
+.blog-share__buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.blog-share__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blog-share__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.blog-share__btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.blog-share__btn--whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.blog-share__btn--whatsapp:hover {
+  background: #20BD5A;
+}
+
+.blog-share__btn--twitter {
+  background: #000000;
+  color: white;
+}
+
+.blog-share__btn--twitter:hover {
+  background: #1a1a1a;
+}
+
+.blog-share__btn--facebook {
+  background: #1877F2;
+  color: white;
+}
+
+.blog-share__btn--facebook:hover {
+  background: #0C63D4;
+}
+
+.blog-share__btn--copy {
+  background: #8b5cf6;
+  color: white;
+}
+
+.blog-share__btn--copy:hover {
+  background: #7c3aed;
+}
+
+.blog-share__btn--copy.copied {
+  background: #22c55e;
+}
+
+@media (max-width: 720px) {
+  .blog-share {
+    padding: 1.5rem;
+  }
+
+  .blog-share__buttons {
+    flex-direction: column;
+  }
+
+  .blog-share__btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* ==================== POST INDIVIDUAL ==================== */
 
 .blog-post-full {

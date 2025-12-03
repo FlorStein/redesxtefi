@@ -314,3 +314,43 @@
 
   loadPost();
 })();
+
+// === FUNCIONES DE COMPARTIR ===
+
+function shareOnWhatsApp() {
+  const url = window.location.href;
+  const title = document.getElementById('postTitle').textContent;
+  const text = `${title} - ${url}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function shareOnTwitter() {
+  const url = window.location.href;
+  const title = document.getElementById('postTitle').textContent;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
+}
+
+function shareOnFacebook() {
+  const url = window.location.href;
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+}
+
+function copyLink() {
+  const url = window.location.href;
+  const button = event.target.closest('.blog-share__btn--copy');
+  const buttonText = button.querySelector('.blog-share__btn-text');
+  
+  navigator.clipboard.writeText(url).then(() => {
+    const originalText = buttonText.textContent;
+    buttonText.textContent = '¡Copiado!';
+    button.classList.add('copied');
+    
+    setTimeout(() => {
+      buttonText.textContent = originalText;
+      button.classList.remove('copied');
+    }, 2000);
+  }).catch(err => {
+    console.error('Error al copiar:', err);
+    alert('No se pudo copiar el enlace');
+  });
+}
