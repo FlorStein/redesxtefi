@@ -154,8 +154,26 @@
 
       // Renderizar el post
       const currentUrl = window.location.href;
-      const imageUrl = imagen || 'https://redesportefi.com/assets/img/logo_rxT.png'; // Fallback a logo
+      const baseUrl = window.location.origin;
+      
+      // Asegurar que la imagen sea una URL absoluta
+      let imageUrl = imagen;
+      if (!imageUrl) {
+        // Si no hay imagen, usar el logo del sitio
+        imageUrl = `${baseUrl}/assets/img/logo_rxT.png`;
+      } else if (!imageUrl.startsWith('http')) {
+        // Si la imagen es relativa, hacerla absoluta
+        imageUrl = `${baseUrl}/${imageUrl.replace(/^\//, '')}`;
+      }
+      
       const description = excerpt || titulo;
+      
+      console.log('Meta tags:', {
+        url: currentUrl,
+        title: titulo,
+        description: description,
+        image: imageUrl
+      });
       
       document.getElementById('pageTitle').textContent = `${titulo} - Redes x Tefi`;
       document.getElementById('pageDescription').content = description;
