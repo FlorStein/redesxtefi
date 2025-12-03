@@ -153,12 +153,28 @@
       }
 
       // Renderizar el post
+      const currentUrl = window.location.href;
+      const imageUrl = imagen || 'https://redesportefi.com/assets/img/logo_rxT.png'; // Fallback a logo
+      const description = excerpt || titulo;
+      
       document.getElementById('pageTitle').textContent = `${titulo} - Redes x Tefi`;
-      document.getElementById('pageDescription').content = titulo;
+      document.getElementById('pageDescription').content = description;
       document.getElementById('postCategory').textContent = categoria;
       document.getElementById('postTitle').textContent = titulo;
       document.getElementById('postDate').textContent = formatDate(fecha);
       document.getElementById('postReading').textContent = lectura;
+      
+      // Meta tags Open Graph
+      document.getElementById('ogUrl').content = currentUrl;
+      document.getElementById('ogTitle').content = titulo;
+      document.getElementById('ogDescription').content = description;
+      document.getElementById('ogImage').content = imageUrl;
+      
+      // Meta tags Twitter
+      document.getElementById('twitterUrl').content = currentUrl;
+      document.getElementById('twitterTitle').content = titulo;
+      document.getElementById('twitterDescription').content = description;
+      document.getElementById('twitterImage').content = imageUrl;
 
       // Imagen destacada
       if (imagen) {
