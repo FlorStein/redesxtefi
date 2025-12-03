@@ -164,17 +164,27 @@
       document.getElementById('postDate').textContent = formatDate(fecha);
       document.getElementById('postReading').textContent = lectura;
       
-      // Meta tags Open Graph
-      document.getElementById('ogUrl').content = currentUrl;
-      document.getElementById('ogTitle').content = titulo;
-      document.getElementById('ogDescription').content = description;
-      document.getElementById('ogImage').content = imageUrl;
+      // Meta tags Open Graph (con validación)
+      const ogUrl = document.getElementById('ogUrl');
+      const ogTitle = document.getElementById('ogTitle');
+      const ogDescription = document.getElementById('ogDescription');
+      const ogImage = document.getElementById('ogImage');
       
-      // Meta tags Twitter
-      document.getElementById('twitterUrl').content = currentUrl;
-      document.getElementById('twitterTitle').content = titulo;
-      document.getElementById('twitterDescription').content = description;
-      document.getElementById('twitterImage').content = imageUrl;
+      if (ogUrl) ogUrl.content = currentUrl;
+      if (ogTitle) ogTitle.content = titulo;
+      if (ogDescription) ogDescription.content = description;
+      if (ogImage) ogImage.content = imageUrl;
+      
+      // Meta tags Twitter (con validación)
+      const twitterUrl = document.getElementById('twitterUrl');
+      const twitterTitle = document.getElementById('twitterTitle');
+      const twitterDescription = document.getElementById('twitterDescription');
+      const twitterImage = document.getElementById('twitterImage');
+      
+      if (twitterUrl) twitterUrl.content = currentUrl;
+      if (twitterTitle) twitterTitle.content = titulo;
+      if (twitterDescription) twitterDescription.content = description;
+      if (twitterImage) twitterImage.content = imageUrl;
 
       // Imagen destacada
       if (imagen) {
