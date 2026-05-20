@@ -156,6 +156,66 @@ section { padding: 0; }
 }
 
 /* Banner strip entre secciones */
+/* MODAL CONFIRMACION */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.modal--open {
+  display: flex;
+}
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.modal__box {
+  position: relative;
+  background: var(--light, #fff);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: fadeSlide 0.3s ease;
+}
+.modal__close {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--deep);
+  line-height: 1;
+}
+.modal__icon {
+  font-size: 2.5rem;
+  color: var(--deep);
+  margin-bottom: 0.75rem;
+}
+.modal__title {
+  font-family: "Arsenica Antiqua", "Arsenica", serif;
+  font-size: 1.8rem;
+  color: var(--deep);
+  margin-bottom: 0.5rem;
+}
+.modal__text {
+  font-size: 1rem;
+  color: var(--deep);
+  margin-bottom: 1.5rem;
+}
+.modal__btn {
+  background: var(--deep);
+  color: var(--light, #fff);
+}
+
 .banner-strip {
   background: #dded8c;
   color: var(--deep);

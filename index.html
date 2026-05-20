@@ -497,7 +497,7 @@
     <section class="contacto" id="contacto">
       <div class="wrap glass">
         <h2 class="contacto__title">Contacto</h2>
-        <form action="https://formspree.io/f/mjkpbbgq" method="POST">
+        <form id="contacto-form" action="https://formspree.io/f/mjkpbbgq" method="POST">
           <input type="hidden" name="_subject" value="Nuevo mensaje desde Redes x Tefi" />
           <label for="nombre">Nombre</label>
           <input id="nombre" name="nombre" required placeholder="Tu nombre" />
@@ -520,6 +520,19 @@
         </form>
       </div>
     </section>
+
+    <!-- Modal confirmación -->
+    <div id="modal-confirmacion" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="modal__backdrop"></div>
+      <div class="modal__box">
+        <button class="modal__close" aria-label="Cerrar">&times;</button>
+        <p class="modal__icon">&#10003;</p>
+        <h2 class="modal__title">¡Mensaje enviado!</h2>
+        <p class="modal__text">Gracias por escribirme. Te respondo a la brevedad.</p>
+        <button class="btn modal__btn">Cerrar</button>
+      </div>
+    </div>
+
   </main>
 
 

@@ -415,6 +415,43 @@ document.addEventListener('DOMContentLoaded', function() {
   // Las tarjetas ahora están siempre abiertas por defecto
   // No se necesita funcionalidad de toggle
 });
+
+// === FORM MODAL ===
+(function () {
+  const form   = document.getElementById('contacto-form');
+  const modal  = document.getElementById('modal-confirmacion');
+  if (!form || !modal) return;
+
+  const backdrop = modal.querySelector('.modal__backdrop');
+  const closeBtn = modal.querySelector('.modal__close');
+  const actionBtn = modal.querySelector('.modal__btn');
+
+  function abrirModal() {
+    modal.classList.add('modal--open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+  function cerrarModal() {
+    modal.classList.remove('modal--open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+
+  if (backdrop) backdrop.addEventListener('click', cerrarModal);
+  if (closeBtn)  closeBtn.addEventListener('click', cerrarModal);
+  if (actionBtn) actionBtn.addEventListener('click', cerrarModal);
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (res) {
+      if (res.ok) { form.reset(); abrirModal(); }
+      else { form.submit(); }
+    }).catch(function () { form.submit(); });
+  });
+})();
+
 // === HERO CAROUSEL ===
 (function () {
   const slides = document.querySelectorAll('.hero-carousel__slide');
