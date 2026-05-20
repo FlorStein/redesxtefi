@@ -88,91 +88,37 @@
 
   async function loadPost() {
     try {
-      console.log('Cargando post con ID:', postId);
-      const proxyUrl = 'https://corsproxy.io/?';
-      
-      // 1. Obtener metadata del post
-      const pageUrl = `https://api.notion.com/v1/pages/${postId}`;
-      console.log('Fetching:', pageUrl);
-      
-      const pageResponse = await fetch(proxyUrl + encodeURIComponent(pageUrl), {
-        headers: {
-          'Authorization': `Bearer ${NOTION_TOKEN}`,
-          'Notion-Version': '2022-06-28',
-        }
-      });
+      const response = await fetch(`/.netlify/functions/get-blog-post?id=${postId}`);
 
-      console.log('Response status:', pageResponse.status);
-      if (!pageResponse.ok) {
-        const errorText = await pageResponse.text();
+      if (!response.ok) {
+        const errorText = await response.text();
         console.error('Error response:', errorText);
         throw new Error('Error al cargar el post');
       }
 
-      const pageData = await pageResponse.json();
-      const props = pageData.properties;
+      const data = await response.json();
 
-      // Extraer datos
-      const titulo = props.Título?.title[0]?.plain_text || 'Sin título';
-      const categoria = props.Categoría?.select?.name || '';
-      const fecha = props.Fecha?.date?.start || '';
-      const lectura = props.Lectura?.rich_text[0]?.plain_text || '';
-      const excerpt = props.Excerpt?.rich_text[0]?.plain_text || '';
-      const contenidoTexto = props.Contenido?.rich_text?.map(t => t.plain_text).join('') || '';
-      const imagen = props.Imagen?.files[0]?.file?.url || props.Imagen?.files[0]?.external?.url || '';
-      
-      console.log('Datos del post:', {
-        titulo,
-        categoria,
-        fecha,
-        lectura,
-        'tiene excerpt': !!excerpt,
-        'largo excerpt': excerpt?.length || 0,
-        'tiene contenido': !!contenidoTexto,
-        'largo contenido': contenidoTexto?.length || 0,
-        'tiene imagen': !!imagen
-      });
-
-      // 2. Obtener contenido (bloques)
-      let blocks = [];
-      try {
-        const blocksUrl = `https://api.notion.com/v1/blocks/${postId}/children`;
-        const blocksResponse = await fetch(proxyUrl + encodeURIComponent(blocksUrl), {
-          headers: {
-            'Authorization': `Bearer ${NOTION_TOKEN}`,
-            'Notion-Version': '2022-06-28',
-          }
-        });
-
-        if (blocksResponse.ok) {
-          const blocksData = await blocksResponse.json();
-          blocks = blocksData.results || [];
-        }
-      } catch (err) {
-        console.log('No se pudo cargar el contenido completo, mostrando excerpt');
-      }
+      const titulo      = data.titulo  || 'Sin título';
+      const categoria   = data.categoria || '';
+      const fecha       = data.fecha    || '';
+      const lectura     = data.lectura  || '';
+      const excerpt     = data.excerpt  || '';
+      const imagen      = data.imagen   || '';
+      let   blocks      = data.blocks   || [];
 
       // Renderizar el post
       const currentUrl = window.location.href;
       const baseUrl = window.location.origin;
-      
+
       // Asegurar que la imagen sea una URL absoluta
       let imageUrl = imagen;
       if (!imageUrl) {
-        // Si no hay imagen, usar el logo del sitio
         imageUrl = `${baseUrl}/assets/img/logo_rxT.png`;
       } else if (!imageUrl.startsWith('http')) {
-        // Si la imagen es relativa, hacerla absoluta
         imageUrl = `${baseUrl}/${imageUrl.replace(/^\//, '')}`;
       }
-      
+
       const description = excerpt || titulo;
-      
-      console.log('Meta tags:', {
-        url: currentUrl,
-        title: titulo,
-        description: description,
-        image: imageUrl
       });
       
       document.getElementById('pageTitle').textContent = `${titulo} - Redes x Tefi`;
@@ -212,12 +158,6 @@
       // Convertir bloques a HTML
       let html = '';
       
-      console.log('Decisión de contenido:', {
-        'bloques disponibles': blocks.length,
-        'tiene contenidoTexto': !!contenidoTexto,
-        'tiene excerpt': !!excerpt
-      });
-      
       if (blocks.length > 0) {
         console.log('✅ Usando bloques de Notion -', blocks.length, 'bloques');
         let inList = false;
@@ -254,83 +194,9 @@
         if (inList) {
           html += listType === 'ul' ? '</ul>' : '</ol>';
         }
-        
-        // Si los bloques no generaron contenido, intentar con la propiedad Contenido
-        if (!html.trim() && contenidoTexto) {
-          console.log('⚠️ Los bloques estaban vacíos, usando propiedad Contenido');
-          blocks = []; // Forzar el siguiente if
-        }
       }
       
-      if (blocks.length === 0 && contenidoTexto) {
-        // Si hay contenido en la propiedad Contenido, convertirlo a HTML
-        console.log('✅ Usando contenido de la propiedad Contenido');
-        console.log('Contenido completo:', contenidoTexto);
-        
-        // Procesar línea por línea respetando todos los saltos
-        const lineas = contenidoTexto.split('\n');
-        console.log('Total de líneas:', lineas.length);
-        let htmlTemp = '';
-        let enLista = false;
-        
-        lineas.forEach(linea => {
-          linea = linea.trim();
-          
-          // Línea vacía = cerrar párrafo/lista y saltar
-          if (!linea) {
-            if (enLista) {
-              htmlTemp += '</ul>';
-              enLista = false;
-            }
-            htmlTemp += '<br>';
-            return;
-          }
-          
-          // Detectar títulos con números (1. , 2. , etc.)
-          if (linea.match(/^\d+\.\s+/)) {
-            if (enLista) {
-              htmlTemp += '</ul>';
-              enLista = false;
-            }
-            htmlTemp += `<h2>${linea}</h2>`;
-            return;
-          }
-          
-          // Detectar items de lista
-          if (linea.startsWith('✔') || linea.startsWith('•') || linea.startsWith('❌')) {
-            if (!enLista) {
-              htmlTemp += '<ul>';
-              enLista = true;
-            }
-            htmlTemp += `<li>${linea}</li>`;
-            return;
-          }
-          
-          // Detectar secciones con emoji o símbolos especiales
-          if (linea.match(/^📌|^✔|^❌/)) {
-            if (enLista) {
-              htmlTemp += '</ul>';
-              enLista = false;
-            }
-            htmlTemp += `<p class="highlight"><strong>${linea}</strong></p>`;
-            return;
-          }
-          
-          // Párrafo normal
-          if (enLista) {
-            htmlTemp += '</ul>';
-            enLista = false;
-          }
-          htmlTemp += `<p>${linea}</p>`;
-        });
-        
-        // Cerrar lista si quedó abierta
-        if (enLista) {
-          htmlTemp += '</ul>';
-        }
-        
-        html = htmlTemp;
-      } else if (excerpt) {
+      if (blocks.length === 0) {
         // Si no hay bloques ni contenido, mostrar el excerpt
         console.log('⚠️ Solo mostrando excerpt');
         html = `<p>${excerpt}</p><p><em>Contenido completo próximamente...</em></p>`;

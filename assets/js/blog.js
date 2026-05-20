@@ -77,78 +77,21 @@
     blogGrid.innerHTML = errorHTML;
   }
 
-  // Cargar posts desde Notion usando CORS proxy
+  // Cargar posts desde la función Netlify
   async function loadPosts() {
     showLoader();
 
-    // Verificar configuración
-    if (!NOTION_TOKEN || !DATABASE_ID) {
-      console.error('Configuración de Notion no encontrada');
-      showError('Configuración de Notion no encontrada. Verifica notion-config.js');
-      return;
-    }
-
-    console.log('Token presente:', !!NOTION_TOKEN);
-    console.log('Database ID:', DATABASE_ID);
-
     try {
-      // Usar un proxy CORS para hacer la petición a Notion
-      const proxyUrl = 'https://corsproxy.io/?';
-      const notionUrl = `https://api.notion.com/v1/databases/${DATABASE_ID}/query`;
-      
-      console.log('Haciendo petición a:', notionUrl);
+      const response = await fetch('/.netlify/functions/get-blog-posts');
 
-      const response = await fetch(proxyUrl + encodeURIComponent(notionUrl), {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${NOTION_TOKEN}`,
-          'Notion-Version': '2022-06-28',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          filter: {
-            property: 'Publicado',
-            checkbox: {
-              equals: true
-            }
-          },
-          sorts: [
-            {
-              property: 'Fecha',
-              direction: 'descending'
-            }
-          ]
-        })
-      });
-      
-      console.log('Response status:', response.status);
-      
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Error response:', errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
-      const data = await response.json();
-      console.log('Respuesta de Notion:', data);
-      console.log('Cantidad de resultados:', data.results?.length || 0);
-      
-      const posts = data.results.map(page => {
-        const props = page.properties;
-        return {
-          id: page.id,
-          titulo: props.Título?.title[0]?.plain_text || '',
-          slug: props.Slug?.rich_text[0]?.plain_text || page.id,
-          categoria: props.Categoría?.select?.name || '',
-          fecha: props.Fecha?.date?.start || '',
-          lectura: props.Lectura?.rich_text[0]?.plain_text || '',
-          excerpt: props.Excerpt?.rich_text[0]?.plain_text || '',
-          imagen: props.Imagen?.files[0]?.file?.url || props.Imagen?.files[0]?.external?.url || '',
-          url: `blog-post.html?id=${page.id}`
-        };
-      });
 
-      console.log('Posts procesados:', posts);
+      const data = await response.json();
+      const posts = data.posts;
 
       if (!posts || posts.length === 0) {
         showError('No hay posts publicados aún');
