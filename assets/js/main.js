@@ -446,18 +446,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   startTimer();
 
-  // Soporte swipe en mobile
+  // Soporte swipe en mobile — escucha en todo el hero__bio
   let touchStartX = 0;
-  const carousel = document.querySelector('.hero-carousel');
-  if (carousel) {
-    carousel.addEventListener('touchstart', function(e) {
+  let touchStartY = 0;
+  const swipeTarget = document.querySelector('.hero__bio') || document.querySelector('.hero-carousel');
+  if (swipeTarget) {
+    swipeTarget.addEventListener('touchstart', function(e) {
       touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
     }, { passive: true });
-    carousel.addEventListener('touchend', function(e) {
-      const diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) {
+    swipeTarget.addEventListener('touchend', function(e) {
+      const diffX = touchStartX - e.changedTouches[0].clientX;
+      const diffY = touchStartY - e.changedTouches[0].clientY;
+      // Solo activar si el gesto es más horizontal que vertical
+      if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
         clearInterval(timer);
-        goTo(diff > 0 ? current + 1 : current - 1);
+        goTo(diffX > 0 ? current + 1 : current - 1);
         startTimer();
       }
     }, { passive: true });
