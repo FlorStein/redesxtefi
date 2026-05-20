@@ -533,4 +533,21 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   startTimer();
+
+  // Soporte swipe en mobile
+  let touchStartX = 0;
+  const carousel = document.querySelector('.hero-carousel');
+  if (carousel) {
+    carousel.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    carousel.addEventListener('touchend', function(e) {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        clearInterval(timer);
+        goTo(diff > 0 ? current + 1 : current - 1);
+        startTimer();
+      }
+    }, { passive: true });
+  }
 })();
