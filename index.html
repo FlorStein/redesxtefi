@@ -75,19 +75,54 @@
         <div class="hero__bio" id="hero-bio">
           <!-- <span class="badge">Quién soy</span> -->
 
-          <p class="herop backdropfilter">Tu negocio todavía no dio el salto.</p>
-          <p class="herop backdropfilter">Desde mi rol de Social Media Manager te pregunto. ¿Tu marca existe, pero no se ve?</p>
-          <p class="herop backdropfilter">Acompaño a emprendedores, profesionales independientes y empresas que necesitan ordenar su comunicación digital, actualizar su estrategia y construir una marca personal que destaque la presencia online.</p>
-          <p class="herop backdropfilter">No te vendo un plan perfecto. Te ayudo a construir uno que realmente puedas sostener.</p>
-          <p class="herop backdropfilter">Soy Tefi, llevo más de 12 años acompañando a profesionales y equipos en el uso de herramientas digitales y en la mejora de sus procesos de comunicación.</p>
-          <p class="herop backdropfilter">Mirá lo que podemos hacer juntas.</p>
-          <div style="margin-top:1rem; display:flex; gap:.6rem; flex-wrap:wrap;">
-            <a class="btn" href="#contacto">Trabajemos juntas</a>
-            <a href="https://wa.me/5491173634022" target="_blank" rel="noopener" class="btn btn--whatsapp"
-              style="display:inline-flex;align-items:center;gap:.4em;font-weight:400;">
-              <img src="assets/img/whatsapp.svg" alt="WhatsApp" style="width:24px;height:24px;vertical-align:middle;" />
-              WhatsApp
-            </a>
+          <div class="hero-carousel">
+
+            <!-- Slide 1: presentación -->
+            <div class="hero-carousel__slide hero-carousel__slide--active">
+              <p class="herop backdropfilter">Tu negocio todavía no dio el salto.</p>
+              <p class="herop backdropfilter">Desde mi rol de Social Media Manager te pregunto. ¿Tu marca existe, pero no se ve?</p>
+              <p class="herop backdropfilter">Acompaño a emprendedores, profesionales independientes y empresas que necesitan ordenar su comunicación digital, actualizar su estrategia y construir una marca personal que destaque la presencia online.</p>
+              <p class="herop backdropfilter">No te vendo un plan perfecto. Te ayudo a construir uno que realmente puedas sostener.</p>
+              <p class="herop backdropfilter">Soy Tefi, llevo más de 12 años acompañando a profesionales y equipos en el uso de herramientas digitales y en la mejora de sus procesos de comunicación.</p>
+              <p class="herop backdropfilter">Mirá lo que podemos hacer juntas.</p>
+            </div>
+
+            <!-- Slide 2: redes sociales -->
+            <div class="hero-carousel__slide">
+              <p class="hero-carousel__service-title">Gestión de redes sociales y contenido digital.</p>
+              <p class="herop backdropfilter">Creamos y gestionamos tu presencia en redes con estrategia, creatividad y consistencia para que tu marca hable sola.</p>
+            </div>
+
+            <!-- Slide 3: diseño web -->
+            <div class="hero-carousel__slide">
+              <p class="hero-carousel__service-title">Diseño Web.</p>
+              <p class="herop backdropfilter">Sitios que representan quién sos, se ven bien en cualquier pantalla y convierten visitas en clientes.</p>
+            </div>
+
+            <!-- Slide 4: marca personal -->
+            <div class="hero-carousel__slide">
+              <p class="hero-carousel__service-title">Marca Personal.</p>
+              <p class="herop backdropfilter">Construimos tu identidad digital para que te reconozcan, te elijan y se acuerden de vos.</p>
+            </div>
+
+            <!-- Botones (siempre visibles) -->
+            <div style="margin-top:1.5rem; display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center;">
+              <a class="btn" href="#contacto">Trabajemos juntas</a>
+              <a href="https://wa.me/5491173634022" target="_blank" rel="noopener" class="btn btn--whatsapp"
+                style="display:inline-flex;align-items:center;gap:.4em;font-weight:400;">
+                <img src="assets/img/whatsapp.svg" alt="WhatsApp" style="width:24px;height:24px;vertical-align:middle;" />
+                WhatsApp
+              </a>
+            </div>
+
+            <!-- Dots -->
+            <div class="hero-carousel__dots">
+              <button class="hero-carousel__dot hero-carousel__dot--active" aria-label="Slide 1"></button>
+              <button class="hero-carousel__dot" aria-label="Slide 2"></button>
+              <button class="hero-carousel__dot" aria-label="Slide 3"></button>
+              <button class="hero-carousel__dot" aria-label="Slide 4"></button>
+            </div>
+
           </div>
         </div>
         <figure class="hero__img-wrap">

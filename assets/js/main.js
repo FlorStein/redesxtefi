@@ -503,3 +503,34 @@ document.addEventListener('DOMContentLoaded', function() {
   // Las tarjetas ahora están siempre abiertas por defecto
   // No se necesita funcionalidad de toggle
 });
+// === HERO CAROUSEL ===
+(function () {
+  const slides = document.querySelectorAll('.hero-carousel__slide');
+  const dots   = document.querySelectorAll('.hero-carousel__dot');
+  if (!slides.length) return;
+
+  let current = 0;
+  let timer;
+
+  function goTo(n) {
+    slides[current].classList.remove('hero-carousel__slide--active');
+    dots[current].classList.remove('hero-carousel__dot--active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('hero-carousel__slide--active');
+    dots[current].classList.add('hero-carousel__dot--active');
+  }
+
+  function startTimer() {
+    timer = setInterval(function () { goTo(current + 1); }, 5000);
+  }
+
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      clearInterval(timer);
+      goTo(i);
+      startTimer();
+    });
+  });
+
+  startTimer();
+})();
