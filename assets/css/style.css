@@ -79,6 +79,27 @@ body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Robo
 
 section { padding: 0; }
 
+/* ==================== INTRO TEXTO ==================== */
+.intro-texto {
+  background: var(--pink-strong, #e393ab);
+  min-height: auto;
+  padding: 4rem 1rem;
+}
+
+.intro-texto__wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-texto__p {
+  font-family: "Codec Cold Trial", system-ui, Arial, sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--deep);
+  line-height: 1.7;
+  margin-bottom: 0.9rem;
+}
+
 /* ==================== HERO CAROUSEL ==================== */
 .hero-carousel {
   position: relative;
