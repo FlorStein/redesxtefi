@@ -71,7 +71,7 @@
 .blog-post--featured .blog-post__excerpt {
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  font-weight: 600;
+  font-weight: 400;
   color: #333;
 }
 
@@ -126,7 +126,7 @@
 .blog-post__category {
   display: inline-block;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   color: #ff00ee;
   margin-bottom: 0.75rem;
@@ -147,7 +147,7 @@
   color: #333;
   margin-bottom: 1.5rem;
   flex: 1;
-  font-weight: 600;
+  font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
@@ -169,7 +169,7 @@
 }
 
 .blog-post__link {
-  font-weight: 600;
+  font-weight: 400;
   color: #927ab8;
   text-decoration: none;
   display: inline-flex;
@@ -184,7 +184,7 @@
 /* Link activo en navegación */
 .nav__links a.active {
   color: #ff00ee;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* Responsive */
@@ -285,7 +285,7 @@
 .blog-error p:first-child {
   font-size: 1.3rem;
   color: #ff6b6b;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* ==================== COMPARTIR ==================== */
@@ -316,7 +316,7 @@
   border-radius: 8px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -408,7 +408,7 @@
   gap: 0.5rem;
   color: var(--deep);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 1.5rem;
   transition: color 0.3s ease;
 }
@@ -431,7 +431,7 @@
   align-items: center;
   font-size: 1rem;
   color: #666;
-  font-weight: 600;
+  font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
@@ -476,7 +476,7 @@
 .blog-post-full__body p.highlight {
   margin-bottom: 0.5rem;
   margin-top: 1.5rem;
-  font-weight: 700;
+  font-weight: 400;
   color: #111;
   font-size: 1.15rem;
 }

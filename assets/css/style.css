@@ -48,7 +48,7 @@ body, html {
   color: var(--deep);
   border: 2px solid var(--deep);
   font-family: "Montserrat", Arial, sans-serif;
-  font-weight: 800;
+  font-weight: 400;
   box-shadow: var(--shadow);
   transition: background 0.3s, color 0.3s, box-shadow 0.3s;
 }
@@ -74,10 +74,21 @@ body, html {
 @font-face { font-family: "Codec Cold Trial"; src: url("../fonts/codec-pro-medium.woff2") format("woff2"); font-weight:500; font-style:normal; font-display:swap; }
 
 /* Enforce Arsenica in titles */
-h1, h2, h3, .brand__name { font-family: "Arsenica Antiqua","Arsenica", serif; font-weight:700; font-size: 1.3rem;}
-body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;  font-weight:bold; }
+h1, h2, h3, .brand__name { font-family: "Arsenica Antiqua","Arsenica", serif; font-weight:400; font-size: 1.3rem;}
+body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;  font-weight:400; }
 
 section { padding: 0; }
+
+/* Banner strip entre secciones */
+.banner-strip {
+  background: #dded8c;
+  color: var(--deep);
+  text-align: center;
+  padding: 1rem 2rem;
+  font-family: "Codec Cold Trial", system-ui, Arial, sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+}
 /* Enforce ARSENICA in all titles */
 h1, h2, h3, .brand__name { font-family: "Arsenica", serif; }
 body { font-family: "Codec Cold Trial", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial; }
@@ -105,7 +116,7 @@ span {
 /* Forzar números a usar sans-serif */
 .number {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 #h1tefa {
@@ -121,7 +132,7 @@ span {
 
 #brand-name {
   font-size: 1.9rem;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--deep);
 }
 
@@ -138,7 +149,7 @@ span {
   padding: 0;
 }
 
-.black  { color: var(--deep); font-style: italic; font-family: 'Times New Roman', Times, serif; font-size: 1.5rem;}
+.black  { color: var(--deep); font-style: italic; font-size: 1.5rem;}
 h2, h1 { font-size: 5rem; 
 align-self: center;
 align-content: center;
@@ -282,7 +293,7 @@ h1,h2,h3 { font-family:"Arsenica Antiqua", serif; color: var(--light); letter-sp
 a { color: var(--green); }
 
 .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.8rem 1.1rem; border-radius:999px;
-  border:2px solid var(--deep); background: var(--pink-strong); color: #000; text-decoration:none; font-weight:800; box-shadow:var(--shadow); }
+  border:2px solid var(--deep); background: var(--pink-strong); color: #000; text-decoration:none; font-weight:400; box-shadow:var(--shadow); }
 .btn--ghost { background:transparent; color:var(--deep);}
 .btn--light { background:#dded8c; color:var(--deep); box-shadow: #122013;}
 /* Animación y hover para Agendar */
