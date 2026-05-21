@@ -31,7 +31,7 @@
             <span class="blog-post__date">${formatDate(post.fecha)}</span>
             <span class="blog-post__reading">${post.lectura} de lectura</span>
           </div>
-          <a href="${post.url}" class="btn">Leer más</a>
+          <a href="blog-post.html?id=${post.id}" class="btn">Leer más</a>
         </div>
       `;
     } else {
@@ -48,7 +48,7 @@
               <span class="blog-post__date">${formatDate(post.fecha)}</span>
               <span class="blog-post__reading">${post.lectura}</span>
             </div>
-            <a href="${post.url}" class="blog-post__link">Leer más →</a>
+            <a href="blog-post.html?id=${post.id}" class="blog-post__link">Leer más →</a>
           </div>
         </article>
       `;
@@ -77,16 +77,14 @@
     blogGrid.innerHTML = errorHTML;
   }
 
-  // Cargar posts desde la función Netlify
+  // Cargar posts desde archivo JSON estático
   async function loadPosts() {
     showLoader();
 
     try {
-      const response = await fetch('/.netlify/functions/get-blog-posts');
+      const response = await fetch('assets/data/posts.json');
 
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Error response:', errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
