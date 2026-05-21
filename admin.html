@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Redes x Tefi</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --deep:   #3b0a14;
+      --pink:   #e393ab;
+      --lima:   #dded8c;
+      --bg:     #fdf6f0;
+      --border: #d9b8c4;
+      --radius: 12px;
+    }
+
+    body { font-family: system-ui, Arial, sans-serif; background: var(--bg); color: var(--deep); min-height: 100vh; }
+
+    /* ── LOGIN ── */
+    #screen-login {
+      display: flex; align-items: center; justify-content: center; min-height: 100vh;
+    }
+    .login-box {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2.5rem 2rem; max-width: 420px; width: 90%; box-shadow: 0 8px 32px rgba(59,10,20,.1);
+    }
+    .login-box h1 { font-size: 1.5rem; margin-bottom: .25rem; }
+    .login-box p  { font-size: .875rem; opacity: .7; margin-bottom: 1.5rem; }
+
+    /* ── LAYOUT ── */
+    #screen-admin { display: none; }
+    .admin-header {
+      background: var(--deep); color: #fff; padding: .75rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .admin-header h1 { font-size: 1.1rem; }
+    .admin-body { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+
+    /* ── SHARED FORM ── */
+    label  { display: block; font-size: .8rem; font-weight: 600; margin-bottom: .3rem; opacity: .8; }
+    input, select, textarea {
+      width: 100%; padding: .6rem .8rem; border: 1px solid var(--border);
+      border-radius: 8px; font-size: .95rem; background: #fff; color: var(--deep);
+      font-family: inherit; transition: border-color .2s;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--deep); }
+    textarea { resize: vertical; }
+    .field { margin-bottom: 1rem; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .55rem 1.1rem; border-radius: 999px; border: 2px solid var(--deep);
+      font-size: .9rem; font-weight: 600; cursor: pointer; transition: background .2s, color .2s;
+      text-decoration: none; background: var(--pink); color: var(--deep);
+    }
+    .btn:hover          { background: var(--deep); color: #fff; }
+    .btn--primary       { background: var(--deep); color: #fff; }
+    .btn--primary:hover { background: #5c1020; }
+    .btn--lima          { background: var(--lima); }
+    .btn--lima:hover    { background: #c9d970; }
+    .btn--ghost         { background: transparent; }
+    .btn--ghost:hover   { background: var(--deep); color: #fff; }
+    .btn--danger        { background: #fff; border-color: #c0392b; color: #c0392b; }
+    .btn--danger:hover  { background: #c0392b; color: #fff; }
+    .btn--sm            { padding: .35rem .75rem; font-size: .8rem; }
+
+    /* ── CARD ── */
+    .card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.5rem; margin-bottom: 1rem;
+    }
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: .5rem; }
+    .card-title  { font-size: 1rem; font-weight: 700; }
+    .card-meta   { font-size: .8rem; opacity: .6; margin-top: .15rem; }
+    .card-actions { display: flex; gap: .5rem; flex-shrink: 0; }
+
+    /* ── POST LIST ── */
+    #list-empty { text-align: center; opacity: .5; padding: 2rem; }
+    .top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: .75rem; }
+    .top-bar h2 { font-size: 1.2rem; }
+
+    /* ── EDITOR ── */
+    #screen-editor { display: none; }
+    .editor-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: .75rem; }
+    .editor-header h2 { font-size: 1.2rem; }
+    .editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .editor-grid { grid-template-columns: 1fr; } }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      background: var(--deep); color: #fff; padding: .75rem 1.25rem;
+      border-radius: 8px; font-size: .9rem; z-index: 9999;
+      opacity: 0; transition: opacity .3s; pointer-events: none;
+    }
+    #toast.show { opacity: 1; }
+
+    /* ── SPINNER ── */
+    .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid currentColor;
+      border-top-color: transparent; border-radius: 50%; animation: spin .6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ LOGIN ══════════ -->
+<div id="screen-login">
+  <div class="login-box">
+    <h1>Redes x Tefi — Admin</h1>
+    <p>Ingresá tu GitHub Personal Access Token para continuar.</p>
+
+    <div class="field">
+      <label for="inp-token">GitHub Personal Access Token</label>
+      <input id="inp-token" type="password" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off" />
+    </div>
+    <p style="font-size:.78rem;opacity:.6;margin-bottom:1.25rem">
+      Necesitás un token con permiso <strong>repo</strong> (o <strong>contents: write</strong>).<br>
+      <a href="https://github.com/settings/tokens/new?description=redesxtefi-admin&scopes=repo" target="_blank" style="color:var(--deep)">Crear token en GitHub →</a>
+    </p>
+
+    <button class="btn btn--primary" onclick="doLogin()" style="width:100%">Entrar</button>
+    <p id="login-error" style="color:#c0392b;font-size:.85rem;margin-top:.75rem;display:none"></p>
+  </div>
+</div>
+
+<!-- ══════════ ADMIN ══════════ -->
+<div id="screen-admin">
+  <div class="admin-header">
+    <h1>✏️ Blog Admin — Redes x Tefi</h1>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <a href="blog.html" target="_blank" class="btn btn--sm btn--ghost" style="color:#fff;border-color:rgba(255,255,255,.4)">Ver blog</a>
+      <button class="btn btn--sm btn--ghost" style="color:#fff;border-color:rgba(255,255,255,.4)" onclick="doLogout()">Salir</button>
+    </div>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- Lista de posts -->
+    <div id="screen-list">
+      <div class="top-bar">
+        <h2>Posts publicados</h2>
+        <button class="btn btn--primary" onclick="openEditor(null)">+ Nuevo post</button>
+      </div>
+      <div id="posts-list"></div>
+    </div>
+
+    <!-- Editor -->
+    <div id="screen-editor">
+      <div class="editor-header">
+        <h2 id="editor-title">Nuevo post</h2>
+        <div style="display:flex;gap:.5rem">
+          <button class="btn btn--ghost" onclick="closeEditor()">Cancelar</button>
+          <button class="btn btn--primary" id="btn-save" onclick="savePost()">Guardar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="editor-grid">
+          <div class="field">
+            <label>Título *</label>
+            <input id="f-titulo" type="text" placeholder="Ej: Cómo armar una estrategia de contenido" />
+          </div>
+          <div class="field">
+            <label>Categoría</label>
+            <input id="f-categoria" type="text" placeholder="Ej: Estrategia, Branding, Diseño Web…" />
+          </div>
+          <div class="field">
+            <label>Fecha</label>
+            <input id="f-fecha" type="date" />
+          </div>
+          <div class="field">
+            <label>Tiempo de lectura</label>
+            <input id="f-lectura" type="text" placeholder="Ej: 5 min" />
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label>Extracto (aparece en la lista)</label>
+            <textarea id="f-excerpt" rows="2" placeholder="Breve descripción del post…"></textarea>
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label>URL de imagen destacada (opcional)</label>
+            <input id="f-imagen" type="url" placeholder="https://…" />
+          </div>
+          <div class="field" style="grid-column:1/-1">
+            <label>Contenido HTML</label>
+            <textarea id="f-contenido" rows="14" placeholder="<p>Primer párrafo...</p>&#10;<h2>Subtítulo</h2>&#10;<p>Segundo párrafo...</p>"></textarea>
+          </div>
+        </div>
+
+        <details style="margin-top:.5rem">
+          <summary style="cursor:pointer;font-size:.85rem;opacity:.7">Vista previa del contenido</summary>
+          <div id="preview" style="margin-top:.75rem;padding:1rem;border:1px dashed var(--border);border-radius:8px;line-height:1.7;font-size:.95rem"></div>
+        </details>
+      </div>
+
+      <p id="save-error" style="color:#c0392b;font-size:.85rem;margin-top:.5rem;display:none"></p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+// ════════════════════════════════════════════════════════
+//  CONFIG
+// ════════════════════════════════════════════════════════
+const GH_OWNER  = 'FlorStein';
+const GH_REPO   = 'redesxtefi';
+const GH_BRANCH = 'main';
+const GH_FILE   = 'assets/data/posts.json';
+const GH_API    = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
+
+let token   = '';
+let posts   = [];
+let fileSha = '';
+let editingId = null;
+
+// ════════════════════════════════════════════════════════
+//  AUTH
+// ════════════════════════════════════════════════════════
+async function doLogin() {
+  const t = document.getElementById('inp-token').value.trim();
+  if (!t) { showLoginError('Ingresá tu token.'); return; }
+
+  try {
+    const res = await ghFetch('GET', null, t);
+    if (!res.ok) throw new Error('Token inválido o sin permisos.');
+    token = t;
+    sessionStorage.setItem('admin_token', token);
+    showAdmin();
+  } catch(e) {
+    showLoginError(e.message);
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem('admin_token');
+  token = '';
+  document.getElementById('screen-admin').style.display = 'none';
+  document.getElementById('screen-login').style.display  = 'flex';
+}
+
+function showLoginError(msg) {
+  const el = document.getElementById('login-error');
+  el.textContent = msg; el.style.display = 'block';
+}
+
+// ════════════════════════════════════════════════════════
+//  GITHUB API
+// ════════════════════════════════════════════════════════
+async function ghFetch(method, body, tkn) {
+  const t = tkn || token;
+  const opts = {
+    method,
+    headers: {
+      'Authorization': `Bearer ${t}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+    }
+  };
+  if (body) opts.body = JSON.stringify(body);
+  return fetch(GH_API, opts);
+}
+
+async function loadPosts() {
+  const res = await ghFetch('GET');
+  if (!res.ok) throw new Error('No se pudo cargar posts.json');
+  const data = await res.json();
+  fileSha = data.sha;
+  const decoded = atob(data.content.replace(/\n/g, ''));
+  const parsed  = JSON.parse(decoded);
+  posts = parsed.posts || [];
+}
+
+async function savePosts(commitMsg) {
+  const json    = JSON.stringify({ posts }, null, 2);
+  const encoded = btoa(unescape(encodeURIComponent(json)));
+
+  const res = await ghFetch('PUT', {
+    message: commitMsg,
+    content: encoded,
+    sha:     fileSha,
+    branch:  GH_BRANCH,
+  });
+
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message || 'Error al guardar en GitHub');
+  }
+
+  const data = await res.json();
+  fileSha = data.content.sha;
+}
+
+// ════════════════════════════════════════════════════════
+//  UI — ADMIN
+// ════════════════════════════════════════════════════════
+async function showAdmin() {
+  document.getElementById('screen-login').style.display = 'none';
+  document.getElementById('screen-admin').style.display = 'block';
+  renderLoading();
+  try {
+    await loadPosts();
+    renderList();
+  } catch(e) {
+    document.getElementById('posts-list').innerHTML =
+      `<p style="color:#c0392b">Error: ${e.message}</p>`;
+  }
+}
+
+function renderLoading() {
+  document.getElementById('posts-list').innerHTML =
+    '<p style="opacity:.5;text-align:center;padding:2rem"><span class="spinner"></span> Cargando posts…</p>';
+}
+
+function renderList() {
+  showScreen('list');
+  const el = document.getElementById('posts-list');
+  if (!posts.length) {
+    el.innerHTML = '<p id="list-empty">No hay posts todavía. ¡Creá el primero!</p>';
+    return;
+  }
+  el.innerHTML = posts.map(p => `
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">${escHtml(p.titulo)}</div>
+          <div class="card-meta">${p.categoria || '—'} · ${p.fecha || '—'} · ${p.lectura || '—'}</div>
+          <div class="card-meta" style="margin-top:.25rem;max-width:500px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escHtml(p.excerpt || '')}</div>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn--sm btn--lima" onclick="openEditor('${p.id}')">Editar</button>
+          <button class="btn btn--sm btn--danger" onclick="deletePost('${p.id}')">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ════════════════════════════════════════════════════════
+//  EDITOR
+// ════════════════════════════════════════════════════════
+function openEditor(id) {
+  editingId = id;
+  const post = id ? posts.find(p => p.id === id) : null;
+
+  document.getElementById('editor-title').textContent = post ? 'Editar post' : 'Nuevo post';
+  document.getElementById('f-titulo').value    = post?.titulo    || '';
+  document.getElementById('f-categoria').value = post?.categoria || '';
+  document.getElementById('f-fecha').value     = post?.fecha     || todayISO();
+  document.getElementById('f-lectura').value   = post?.lectura   || '';
+  document.getElementById('f-excerpt').value   = post?.excerpt   || '';
+  document.getElementById('f-imagen').value    = post?.imagen    || '';
+  document.getElementById('f-contenido').value = post?.contenido || '';
+  document.getElementById('save-error').style.display = 'none';
+  updatePreview();
+  showScreen('editor');
+}
+
+function closeEditor() {
+  editingId = null;
+  showScreen('list');
+}
+
+async function savePost() {
+  const titulo = document.getElementById('f-titulo').value.trim();
+  if (!titulo) {
+    showSaveError('El título es obligatorio.'); return;
+  }
+
+  const post = {
+    id:        editingId || slugify(titulo) + '-' + Date.now(),
+    titulo,
+    slug:      slugify(titulo),
+    categoria: document.getElementById('f-categoria').value.trim(),
+    fecha:     document.getElementById('f-fecha').value,
+    lectura:   document.getElementById('f-lectura').value.trim(),
+    excerpt:   document.getElementById('f-excerpt').value.trim(),
+    imagen:    document.getElementById('f-imagen').value.trim(),
+    contenido: document.getElementById('f-contenido').value,
+  };
+
+  const btn = document.getElementById('btn-save');
+  btn.innerHTML = '<span class="spinner"></span> Guardando…';
+  btn.disabled  = true;
+  document.getElementById('save-error').style.display = 'none';
+
+  try {
+    if (editingId) {
+      const idx = posts.findIndex(p => p.id === editingId);
+      posts[idx] = post;
+    } else {
+      posts.unshift(post);
+    }
+    await savePosts(editingId ? `Editar post: ${titulo}` : `Nuevo post: ${titulo}`);
+    toast('✅ Guardado. Netlify va a redeployar en ~1 min.');
+    closeEditor();
+    renderList();
+  } catch(e) {
+    // Revertir en memoria si falló
+    if (!editingId) posts.shift();
+    showSaveError(e.message);
+  } finally {
+    btn.innerHTML = 'Guardar';
+    btn.disabled  = false;
+  }
+}
+
+async function deletePost(id) {
+  const post = posts.find(p => p.id === id);
+  if (!post) return;
+  if (!confirm(`¿Eliminar "${post.titulo}"? Esta acción no se puede deshacer.`)) return;
+
+  const prev = [...posts];
+  posts = posts.filter(p => p.id !== id);
+  try {
+    await savePosts(`Eliminar post: ${post.titulo}`);
+    toast('🗑️ Post eliminado.');
+    renderList();
+  } catch(e) {
+    posts = prev;
+    toast('Error: ' + e.message);
+  }
+}
+
+// ════════════════════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════════════════════
+function showScreen(name) {
+  document.getElementById('screen-list').style.display   = name === 'list'   ? 'block' : 'none';
+  document.getElementById('screen-editor').style.display = name === 'editor' ? 'block' : 'none';
+}
+
+function updatePreview() {
+  document.getElementById('preview').innerHTML =
+    document.getElementById('f-contenido').value || '<em style="opacity:.4">Sin contenido</em>';
+}
+
+function showSaveError(msg) {
+  const el = document.getElementById('save-error');
+  el.textContent = '⚠️ ' + msg; el.style.display = 'block';
+}
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 4000);
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function slugify(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+          .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+
+function todayISO() {
+  return new Date().toISOString().slice(0,10);
+}
+
+// Live preview
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('f-contenido').addEventListener('input', updatePreview);
+
+  // Auto-login si hay token guardado
+  const saved = sessionStorage.getItem('admin_token');
+  if (saved) {
+    token = saved;
+    showAdmin();
+  }
+});
+</script>
+</body>
+</html>
