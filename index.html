@@ -29,7 +29,7 @@
         x Tefi</button>
       <ul class="nav__links">
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#portfolio">Galería</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#modalidad">Modalidad de Trabajo</a></li>
         <li><a href="#sobre">Sobre el Proyecto</a></li>
         <li><a href="blog.html">Blog</a></li>
@@ -43,7 +43,7 @@
     <nav id="mobile-nav" class="mobile" aria-label="Menú móvil">
       <ul>
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#portfolio">Galería</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#modalidad">Modalidad de Trabajo</a></li>
         <li><a href="#sobre">Sobre el Proyecto</a></li>
         <li><a href="blog.html">Blog</a></li>
@@ -371,68 +371,74 @@
       </div>
     </section>
 
-    <section class="portfolio" id="portfolio">
+    <section class="portfolio client-portfolio" id="portfolio" aria-labelledby="portfolio-title">
       <div class="wrap wrap--no-bg">
-        <h2>Galería</h2>
-        <div class="reel-container">
-          <button class="reel-arrow reel-arrow--prev" id="reelPrevBtn" aria-label="Anterior">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          <div class="instagram-reel" id="instagramReel">
-            <div class="reel-item">
-              <img src="assets/img/sermagia1.png" alt="Sermagia 1" />
-              <p class="reel-caption">Campaña de lanzamiento Ser Magia - Diseño de identidad visual y contenido para redes</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/sermagia2.png" alt="Sermagia 2" />
-              <p class="reel-caption">Ser Magia - Carrusel informativo sobre servicios y propuesta de valor</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/sermagia3.png" alt="Sermagia 3" />
-              <p class="reel-caption">Ser Magia - Contenido educativo con estilo minimalista y colores cálidos</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/sermagia4.png" alt="Sermagia 4" />
-              <p class="reel-caption">Ser Magia - Post de producto con fotografía lifestyle y branding coherente</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/sermagia5.png" alt="Sermagia 5" />
-              <p class="reel-caption">Ser Magia - Story highlight covers y elementos gráficos para Instagram</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/studionola1.png" alt="Studio Nola 1" />
-              <p class="reel-caption">Studio Nola - Sesión fotográfica arquitectónica e interiorismo contemporáneo</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/studionola2.png" alt="Studio Nola 2" />
-              <p class="reel-caption">Studio Nola - Catálogo de productos y mobiliario con fotografía profesional</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/studionola3.png" alt="Studio Nola 3" />
-              <p class="reel-caption">Studio Nola - Diseño editorial y contenido para lookbook digital</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/studionola4.png" alt="Studio Nola 4" />
-              <p class="reel-caption">Studio Nola - Estrategia de contenido y dirección de arte para redes sociales</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/patagonia1.png" alt="Patagonia 1" />
-              <p class="reel-caption">Patagonia - Campaña turística con fotografía de paisajes y naturaleza</p>
-            </div>
-            <div class="reel-item">
-              <img src="assets/img/patagonia2.png" alt="Patagonia 2" />
-              <p class="reel-caption">Patagonia - Contenido storytelling para promover turismo sustentable</p>
-            </div>
-          </div>
-          <button class="reel-arrow reel-arrow--next" id="reelNextBtn" aria-label="Siguiente">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
+        <div class="client-portfolio__intro">
+          <p class="client-portfolio__eyebrow">Casos de clientes · 2024–2026</p>
+          <h2 id="portfolio-title">Marcas que construí <em>desde adentro</em></h2>
+          <p>Estrategia de contenido, identidad visual y presencia digital para marcas reales. Cada caso, un proceso diferente. Cada cliente, una voz propia.</p>
         </div>
-        <div class="reel-indicators" id="reelIndicators"></div>
+
+        <div class="client-cases">
+          <article class="client-case client-case--mitco">
+            <div class="client-case__summary">
+              <span class="client-case__number">Caso 01</span>
+              <h3>Mit&amp;Co<br>Deco</h3>
+              <p class="client-case__industry">Decoración &amp; diseño de interiores</p>
+              <p>Marca de muebles y ambientación de interiores con identidad propia y un público que compra por estética y confianza. El desafío: construir una presencia digital coherente y expandir sus canales de descubrimiento más allá de Instagram.</p>
+            </div>
+            <div class="client-case__details">
+              <p class="client-case__label">Servicios entregados</p>
+              <ul class="client-services">
+                <li><span>📸</span><div><strong>Gestión de Instagram</strong><small>Contenido editorial, carruseles y stories con voz de marca definida.</small></div></li>
+                <li><span>📌</span><div><strong>Estrategia Pinterest</strong><small>Expansión a un nuevo canal de descubrimiento visual.</small></div></li>
+                <li><span>🎨</span><div><strong>Manual de marca</strong><small>Paleta, tipografía, tono y aplicaciones para un sistema visual completo.</small></div></li>
+                <li><span>✏️</span><div><strong>Diseño de logo</strong><small>Identidad visual de carácter artesanal y contemporáneo.</small></div></li>
+              </ul>
+              <blockquote>“Identidad visual coherente en todos los canales y expansión a Pinterest como canal de captación orgánica.”</blockquote>
+            </div>
+          </article>
+
+          <article class="client-case client-case--agos">
+            <div class="client-case__summary">
+              <span class="client-case__number">Caso 02</span>
+              <h3>Agos<br>Nutrición</h3>
+              <p class="client-case__industry">Nutrición &amp; salud · Salta Capital</p>
+              <p>Nutricionista con expertise en análisis corporal que necesitaba construir su marca personal desde cero y generar consultas de forma consistente a través de canales digitales.</p>
+            </div>
+            <div class="client-case__details">
+              <p class="client-case__label">Servicios entregados</p>
+              <ul class="client-services">
+                <li><span>🌐</span><div><strong>Desarrollo web</strong><small>Sitio profesional orientado a conversión y captación de consultas.</small></div></li>
+                <li><span>📱</span><div><strong>Gestión de redes sociales</strong><small>Instagram y Facebook con contenido de valor y calendario editorial.</small></div></li>
+                <li><span>📣</span><div><strong>Meta Ads &amp; Google Ads</strong><small>Campañas de captación para servicios de análisis corporal.</small></div></li>
+                <li><span>📍</span><div><strong>Google Maps &amp; SEO local</strong><small>Posicionamiento local para búsquedas en Salta Capital.</small></div></li>
+                <li><span>🎨</span><div><strong>Logo &amp; manual de marca</strong><small>Identidad visual completa para una marca personal de salud.</small></div></li>
+              </ul>
+              <blockquote>“Presencia digital integral construida desde cero: web, redes, ads y posicionamiento local funcionando en simultáneo.”</blockquote>
+            </div>
+          </article>
+
+          <article class="client-case client-case--carocruz">
+            <div class="client-case__summary">
+              <span class="client-case__number">Caso 03</span>
+              <h3>Papelera<br>Carocruz</h3>
+              <p class="client-case__industry">Papelería mayorista &amp; minorista</p>
+              <p>Empresa familiar con años de trayectoria que necesitaba modernizar su presencia, mejorar la experiencia en el punto de venta y construir canales digitales que acompañen el crecimiento comercial.</p>
+            </div>
+            <div class="client-case__details">
+              <p class="client-case__label">Servicios entregados</p>
+              <ul class="client-services">
+                <li><span>🏷️</span><div><strong>Branding &amp; identidad visual</strong><small>Renovación de identidad para una comunicación coherente.</small></div></li>
+                <li><span>📣</span><div><strong>Meta Ads</strong><small>Campañas de captación para segmentos minorista y mayorista.</small></div></li>
+                <li><span>📍</span><div><strong>Google Maps</strong><small>Optimización de perfil local para aumentar visibilidad y consultas.</small></div></li>
+                <li><span>🛒</span><div><strong>Proceso de venta</strong><small>Optimización del flujo comercial y captación de nuevos segmentos.</small></div></li>
+                <li><span>🏪</span><div><strong>Mejora visual in-store</strong><small>Intervención en la experiencia del punto de venta físico.</small></div></li>
+              </ul>
+              <blockquote>“Transformación digital y visual de una empresa tradicional, desde el local hasta los canales digitales.”</blockquote>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
     <section class=\"modalidad\" id="modalidad">
