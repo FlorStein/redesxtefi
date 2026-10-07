@@ -240,7 +240,6 @@ p,
 .servicioss, 
 .card__deliverables,
 .card__section,
-.price,
 h3,
 .h33,
 li,
@@ -345,7 +344,6 @@ margin: 10px;}
 
 .h33 { font-size: 1.4rem; margin-bottom: .6rem; color: var(--deep); }
 
-.price { font-size: 1.2rem; font-weight: 800; color: var(--accent); margin-top: .8rem; }
 .card__cta { margin-top: .8rem; display: inline-block; }
 
 #serviciosh2 { font-size: 5rem; margin-bottom: 1rem; color: var(--accent); text-align: center; }
